@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcaa44w8gvp1x"]
+
+[ext_resource type="Texture2D" uid="uid://dm86op1qdupas" path="res://Egg/egg_spawner.png" id="1_431jn"]
+[ext_resource type="Script" path="res://Egg/ingredient_spawner.gd" id="2_k2afa"]
+[ext_resource type="Script" path="res://Egg/draggable_ingredient.gd" id="3_y2clw"]
+[ext_resource type="Texture2D" uid="uid://m8sxg75v4fsc" path="res://Egg/egg_draggable.png" id="4_pf4rb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2o78w"]
+size = Vector2(253, 134)
+
+[node name="Node" type="Node"]
+
+[node name="Ingredients" type="Node" parent="."]
+
+[node name="Egg" type="Node2D" parent="Ingredients"]
+position = Vector2(582, 291)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ingredients/Egg"]
+texture = ExtResource("1_431jn")
+
+[node name="IngredientSpawner" type="Node2D" parent="Ingredients/Egg"]
+script = ExtResource("2_k2afa")
+
+[node name="Area2D" type="Area2D" parent="Ingredients/Egg/IngredientSpawner"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredients/Egg/IngredientSpawner/Area2D"]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_2o78w")
+
+[node name="DraggableIngredient" type="Node2D" parent="Ingredients/Egg/IngredientSpawner"]
+process_mode = 4
+script = ExtResource("3_y2clw")
+
+[node name="Area2D" type="Area2D" parent="Ingredients/Egg/IngredientSpawner/DraggableIngredient"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredients/Egg/IngredientSpawner/DraggableIngredient/Area2D"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_2o78w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ingredients/Egg/IngredientSpawner/DraggableIngredient"]
+visible = false
+position = Vector2(-2, 4)
+scale = Vector2(0.046, 0.046)
+texture = ExtResource("4_pf4rb")
+
+[connection signal="mouse_entered" from="Ingredients/Egg/IngredientSpawner/Area2D" to="Ingredients/Egg/IngredientSpawner" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Ingredients/Egg/IngredientSpawner/Area2D" to="Ingredients/Egg/IngredientSpawner" method="_on_area_2d_mouse_exited"]
