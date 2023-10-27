@@ -1,5 +1,5 @@
-extends Node
-@onready var ingredient := $DynamicEgg
+extends Node2D
+@onready var ingredient := $DraggableIngredient
 var is_mouse_inside:bool = false
 
 func _process(delta):
