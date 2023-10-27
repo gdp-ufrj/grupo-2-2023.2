@@ -13,7 +13,7 @@ size = Vector2(132, 134)
 
 [node name="Egg" type="Node" parent="Ingredients"]
 
-[node name="FixedEgg" type="Sprite2D" parent="Ingredients/Egg"]
+[node name="Sprite2D" type="Sprite2D" parent="Ingredients/Egg"]
 texture = ExtResource("1_s7n14")
 
 [node name="IngredientSpawner" type="Node" parent="Ingredients/Egg"]
@@ -26,6 +26,7 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_2o78w")
 
 [node name="DynamicEgg" type="Node2D" parent="Ingredients/Egg/IngredientSpawner"]
+process_mode = 4
 script = ExtResource("3_mj5e7")
 
 [node name="Area2D" type="Area2D" parent="Ingredients/Egg/IngredientSpawner/DynamicEgg"]
@@ -34,8 +35,10 @@ script = ExtResource("3_mj5e7")
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_2o78w")
 
-[node name="DynamicEgg" type="Sprite2D" parent="Ingredients/Egg/IngredientSpawner/DynamicEgg"]
+[node name="Sprite2D" type="Sprite2D" parent="Ingredients/Egg/IngredientSpawner/DynamicEgg"]
 visible = false
+position = Vector2(-2, 4)
+scale = Vector2(0.390625, 0.390625)
 texture = ExtResource("1_s7n14")
 
 [connection signal="mouse_entered" from="Ingredients/Egg/IngredientSpawner/Area2D" to="Ingredients/Egg/IngredientSpawner" method="_on_area_2d_mouse_entered"]
