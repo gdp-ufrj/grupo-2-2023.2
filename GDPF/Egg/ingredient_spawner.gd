@@ -1,5 +1,5 @@
 extends Node2D
-@onready var ingredient := $DraggableIngredient
+@onready var ingredient := $"../DraggableIngredient"
 var is_mouse_inside:bool = false
 
 func _process(delta):
@@ -8,6 +8,7 @@ func _process(delta):
 		ingredient.process_mode = Node.PROCESS_MODE_INHERIT
 	if (Input.is_action_just_released("left_mouse")):
 		ingredient.ingredient_sprite.visible = false
+		ingredient.global_position = self.global_position
 		ingredient.process_mode = Node.PROCESS_MODE_DISABLED
 
 
