@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3poo7bdhm2vk"]
+[gd_scene load_steps=6 format=3 uid="uid://c3poo7bdhm2vk"]
 
-[ext_resource type="Script" path="res://Egg/ingredient_data.gd" id="1_7dll0"]
 [ext_resource type="Texture2D" uid="uid://dm86op1qdupas" path="res://Egg/egg_spawner.png" id="1_po1jm"]
 [ext_resource type="Script" path="res://Egg/ingredient_spawner.gd" id="2_d0wsf"]
 [ext_resource type="Script" path="res://Egg/draggable_ingredient.gd" id="3_elxxd"]
@@ -9,22 +8,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2o78w"]
 size = Vector2(253, 134)
 
-[node name="Egg" type="Node2D"]
+[node name="IngredientSpawner" type="Node2D"]
 position = Vector2(582, 291)
-script = ExtResource("1_7dll0")
-ingredient_name = "Egg"
-cooking_time = 5.0
+script = ExtResource("2_d0wsf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_po1jm")
 
-[node name="IngredientSpawner" type="Node2D" parent="."]
-script = ExtResource("2_d0wsf")
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="IngredientSpawner"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientSpawner/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_2o78w")
 
@@ -32,17 +26,12 @@ shape = SubResource("RectangleShape2D_2o78w")
 process_mode = 4
 script = ExtResource("3_elxxd")
 
-[node name="Area2D" type="Area2D" parent="DraggableIngredient"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableIngredient/Area2D"]
-position = Vector2(-2, 0)
-shape = SubResource("RectangleShape2D_2o78w")
-
 [node name="Sprite2D" type="Sprite2D" parent="DraggableIngredient"]
 visible = false
 position = Vector2(-2, 4)
 scale = Vector2(0.046, 0.046)
 texture = ExtResource("4_aha8e")
 
-[connection signal="mouse_entered" from="IngredientSpawner/Area2D" to="IngredientSpawner" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="IngredientSpawner/Area2D" to="IngredientSpawner" method="_on_area_2d_mouse_exited"]
+[connection signal="ingredient_grabbed" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_grabbed"]
+[connection signal="ingredient_released" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_released"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

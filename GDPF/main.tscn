@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcaa44w8gvp1x"]
+
+[ext_resource type="Script" path="res://Pan/pan.gd" id="1_756xl"]
+[ext_resource type="Texture2D" uid="uid://cpn6bji7dnqda" path="res://Pan/pan_empty.png" id="2_2jk58"]
+[ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://Egg/egg_scene.tscn" id="3_j3iym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6wpb"]
+size = Vector2(202, 89)
+
+[node name="Kitchen" type="Node"]
+
+[node name="Stove" type="Node" parent="."]
+
+[node name="Pan" type="Node2D" parent="Stove"]
+position = Vector2(200, 500)
+script = ExtResource("1_756xl")
+recipes = Array[String](["Egg", "Chicken"])
+
+[node name="Area2D" type="Area2D" parent="Stove/Pan"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/Pan/Area2D"]
+position = Vector2(-40, 1.5)
+shape = SubResource("RectangleShape2D_o6wpb")
+
+[node name="States" type="Node" parent="Stove/Pan"]
+
+[node name="STATE_EMPTY" type="Node" parent="Stove/Pan/States"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_EMPTY"]
+position = Vector2(206, 500)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_2jk58")
+
+[node name="STATE_RICE" type="Node" parent="Stove/Pan/States"]
+process_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_RICE"]
+visible = false
+
+[node name="STATE_WATER" type="Node" parent="Stove/Pan/States"]
+process_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_WATER"]
+visible = false
+
+[node name="STATE_RICE_AND_WATER" type="Node" parent="Stove/Pan/States"]
+process_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_RICE_AND_WATER"]
+visible = false
+
+[node name="STATE_COOKED" type="Node" parent="Stove/Pan/States"]
+process_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_COOKED"]
+visible = false
+
+[node name="STATE_OVERCOOKED" type="Node" parent="Stove/Pan/States"]
+process_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_OVERCOOKED"]
+visible = false
+
+[node name="STATE_MESSED_UP" type="Node" parent="Stove/Pan/States"]
+process_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/Pan/States/STATE_MESSED_UP"]
+visible = false
+
+[node name="IngredientSpawners" type="Node" parent="."]
+
+[node name="EggSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
+position = Vector2(175, 232)
+cooking_time = 5.0
+
+[node name="ChickenSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
+ingredient_name = "Chicken"
+cooking_time = 10.0
+
+[connection signal="ingredient_released_on_pan" from="Stove/Pan" to="Stove/Pan" method="_on_ingredient_released_on_pan"]
+[connection signal="area_entered" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_area_exited"]
+[connection signal="input_event" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_mouse_exited"]
+[connection signal="ingredient_released" from="IngredientSpawners/EggSpawner" to="Stove/Pan" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/ChickenSpawner" to="Stove/Pan" method="_on_ingredient_released"]

@@ -1,20 +1,20 @@
 extends Node2D
-@onready var ingredient := $"../DraggableIngredient"
-var is_mouse_inside:bool = false
+signal ingredient_grabbed
+signal ingredient_released(ingredient)
 
-func _process(delta):
-	if (Input.is_action_just_pressed("left_mouse") && is_mouse_inside):
-		ingredient.ingredient_sprite.visible = true
-		ingredient.process_mode = Node.PROCESS_MODE_INHERIT
-	if (Input.is_action_just_released("left_mouse")):
-		ingredient.ingredient_sprite.visible = false
-		ingredient.global_position = self.global_position
-		ingredient.process_mode = Node.PROCESS_MODE_DISABLED
+@export var ingredient_name:String = "Egg"
+@export var cooking_time:float = 1
 
+var _is_grabbing_ingredient := false
 
-func _on_area_2d_mouse_entered():
-	is_mouse_inside = true
-
-
-func _on_area_2d_mouse_exited():
-	is_mouse_inside = false
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("left_mouse"):
+			_is_grabbing_ingredient = true
+			ingredient_grabbed.emit()
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_action_released("left_mouse") and _is_grabbing_ingredient:
+			ingredient_released.emit(ingredient_name)
+			_is_grabbing_ingredient = false
