@@ -1,3 +1,4 @@
+class_name DraggableIngredient
 extends Node2D
 
 @onready var _sprite = $Sprite2D

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm86op1qdupas"
-path="res://.godot/imported/egg_spawner.png-3124863c89f81c3f16964be6fe59f114.ctex"
+uid="uid://cydh3um7bj42j"
+path="res://.godot/imported/draggable_rice.png-5ece3620eacf77d9d02233adb48c85e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Egg/egg_spawner.png"
-dest_files=["res://.godot/imported/egg_spawner.png-3124863c89f81c3f16964be6fe59f114.ctex"]
+source_file="res://Ingredients/Rice/draggable_rice.png"
+dest_files=["res://.godot/imported/draggable_rice.png-5ece3620eacf77d9d02233adb48c85e6.ctex"]
 
 [params]
 
