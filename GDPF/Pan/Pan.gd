@@ -15,6 +15,9 @@ var _is_mouse_inside = false
 @onready var rice_state = $FiniteStateMachine/RiceState as RiceState
 @onready var water_state = $FiniteStateMachine/WaterState as WaterState
 @onready var cooking_state = $FiniteStateMachine/CookingState as CookingState
+@onready var cooked_state = $FiniteStateMachine/CookedState as CookedState
+@onready var overcooked_state = $FiniteStateMachine/OvercookedState as OvercookedState
+
 
 func _create_transition(state_signal: Signal, next_state: State):
 	state_signal.connect(fsm.change_state.bind(next_state))
@@ -24,10 +27,8 @@ func _ready():
 	_create_transition(empty_state.water_dropped, water_state)
 	_create_transition(rice_state.water_dropped, cooking_state)
 	_create_transition(water_state.rice_dropped, cooking_state)
-#	empty_state.rice_dropped.connect(fsm.change_state.bind(rice_state))
-#	empty_state.water_dropped.connect(fsm.change_state.bind(water_state))
-#	rice_state.water_dropped.connect(fsm.change_state.bind(cooking_state))
-#	water_state.rice_dropped.connect(fsm.change_state.binf(cooking_state))
+	_create_transition(cooking_state.cooking_finished, cooked_state)
+	_create_transition(cooked_state.cooked_finished, overcooked_state)
 
 func _on_ingredient_released(ingredient):
 	if (recipes.has(ingredient) && _is_mouse_inside):

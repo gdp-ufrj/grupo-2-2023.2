@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcaa44w8gvp1x"]
+[gd_scene load_steps=18 format=3 uid="uid://bcaa44w8gvp1x"]
 
 [ext_resource type="Script" path="res://Pan/pan.gd" id="1_756xl"]
 [ext_resource type="Texture2D" uid="uid://cpn6bji7dnqda" path="res://Pan/pan_empty.png" id="2_2jk58"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" path="res://Pan/water_state.gd" id="6_a8lel"]
 [ext_resource type="Script" path="res://Pan/cooking_state.gd" id="7_o48xl"]
 [ext_resource type="Texture2D" uid="uid://cydh3um7bj42j" path="res://Ingredients/Rice/draggable_rice.png" id="7_xkqww"]
+[ext_resource type="Script" path="res://Pan/cooked_state.gd" id="8_6b1gn"]
 [ext_resource type="Texture2D" uid="uid://d3fdsbiogbah0" path="res://Ingredients/Water/water_spawner.png" id="8_vjguh"]
 [ext_resource type="Texture2D" uid="uid://cjmqddcq37cpd" path="res://Ingredients/Water/draggable_water.png" id="9_2cs4m"]
+[ext_resource type="Script" path="res://Pan/overcooked_state.gd" id="9_57ch6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1rrv"]
 animations = [{
@@ -39,6 +41,9 @@ position = Vector2(200, 500)
 script = ExtResource("1_756xl")
 pan_name = "rice_pan"
 recipes = Array[String](["water", "rice"])
+
+[node name="Timer" type="Timer" parent="Stove/Pan"]
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/Pan"]
 scale = Vector2(0.5, 0.5)
@@ -69,15 +74,16 @@ script = ExtResource("6_a8lel")
 [node name="CookingState" type="Node" parent="Stove/Pan/FiniteStateMachine"]
 process_mode = 4
 script = ExtResource("7_o48xl")
+cooking_time = 3.0
 
 [node name="CookedState" type="Node" parent="Stove/Pan/FiniteStateMachine"]
 process_mode = 4
+script = ExtResource("8_6b1gn")
+time_until_overcooked = 3.0
 
 [node name="OvercookedState" type="Node" parent="Stove/Pan/FiniteStateMachine"]
 process_mode = 4
-
-[node name="SpoiledState" type="Node" parent="Stove/Pan/FiniteStateMachine"]
-process_mode = 4
+script = ExtResource("9_57ch6")
 
 [node name="IngredientSpawners" type="Node" parent="."]
 
@@ -110,6 +116,7 @@ texture = ExtResource("9_2cs4m")
 
 [connection signal="ingredient_released_on_pan" from="Stove/Pan" to="Stove/Pan" method="_on_ingredient_released_on_pan"]
 [connection signal="ingredient_released_on_pan" from="Stove/Pan" to="Stove/Pan/FiniteStateMachine/EmptyState" method="_on_pan_ingredient_released"]
+[connection signal="timeout" from="Stove/Pan/Timer" to="Stove/Pan/FiniteStateMachine/CookingState" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_area_exited"]
 [connection signal="mouse_entered" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_mouse_entered"]
