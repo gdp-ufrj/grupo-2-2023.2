@@ -72,10 +72,6 @@ theme_override_constants/outline_size = 8
 theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("5_rgw34")
 theme_override_font_sizes/font_size = 32
-text = "ARROZ
-FEIJÃO
-FRANGO
-"
 horizontal_alignment = 1
 
 [node name="Timer" type="Node" parent="HUD/Control"]
