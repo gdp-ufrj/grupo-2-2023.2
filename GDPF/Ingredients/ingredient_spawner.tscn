@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3poo7bdhm2vk"]
 
-[ext_resource type="Texture2D" uid="uid://dm86op1qdupas" path="res://Ingredients/egg/egg_spawner.png" id="2_s1mai"]
-[ext_resource type="Texture2D" uid="uid://m8sxg75v4fsc" path="res://Ingredients/egg/egg_draggable.png" id="4_duupd"]
+[ext_resource type="Texture2D" uid="uid://dm86op1qdupas" path="res://ingredients/egg/egg_spawner.png" id="1_xw5q6"]
+[ext_resource type="Texture2D" uid="uid://m8sxg75v4fsc" path="res://ingredients/egg/egg_draggable.png" id="2_ptt65"]
 
 [sub_resource type="GDScript" id="GDScript_qsv2l"]
 script/source = "class_name IngredientSpawner
@@ -63,7 +63,7 @@ ingredient_name = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_s1mai")
+texture = ExtResource("1_xw5q6")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -79,7 +79,7 @@ script = SubResource("GDScript_c5iwx")
 visible = false
 position = Vector2(-2, 4)
 scale = Vector2(0.046, 0.046)
-texture = ExtResource("4_duupd")
+texture = ExtResource("2_ptt65")
 
 [connection signal="ingredient_grabbed" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_grabbed"]
 [connection signal="ingredient_released" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_released"]

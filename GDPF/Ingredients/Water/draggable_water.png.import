@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjmqddcq37cpd"
-path="res://.godot/imported/draggable_water.png-29b34623a3e96ed249d4ec15744d79ab.ctex"
+path="res://.godot/imported/draggable_water.png-d8674f35c76f27cf7043b25f3e030169.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ingredients/water/draggable_water.png"
-dest_files=["res://.godot/imported/draggable_water.png-29b34623a3e96ed249d4ec15744d79ab.ctex"]
+source_file="res://ingredients/water/draggable_water.png"
+dest_files=["res://.godot/imported/draggable_water.png-d8674f35c76f27cf7043b25f3e030169.ctex"]
 
 [params]
 
