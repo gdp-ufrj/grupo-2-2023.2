@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3fdsbiogbah0"
-path="res://.godot/imported/water_spawner.png-9087a6e8ad229a01c477dd560da42ffa.ctex"
+path="res://.godot/imported/water_spawner.png-8f784e166201ddac8a3271f9c838386d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ingredients/Water/water_spawner.png"
-dest_files=["res://.godot/imported/water_spawner.png-9087a6e8ad229a01c477dd560da42ffa.ctex"]
+source_file="res://Ingredients/water/water_spawner.png"
+dest_files=["res://.godot/imported/water_spawner.png-8f784e166201ddac8a3271f9c838386d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpn6bji7dnqda"
-path="res://.godot/imported/pan_empty.png-50213834e923c16c124e8554c1aef859.ctex"
+path="res://.godot/imported/pan_empty.png-5bf228b1d3f9fa5c461a99a4f0fec60f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pan/pan_empty.png"
-dest_files=["res://.godot/imported/pan_empty.png-50213834e923c16c124e8554c1aef859.ctex"]
+source_file="res://rice_pot/pan_empty.png"
+dest_files=["res://.godot/imported/pan_empty.png-5bf228b1d3f9fa5c461a99a4f0fec60f.ctex"]
 
 [params]
 

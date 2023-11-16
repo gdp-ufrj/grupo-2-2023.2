@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cydh3um7bj42j"
-path="res://.godot/imported/draggable_rice.png-5ece3620eacf77d9d02233adb48c85e6.ctex"
+path="res://.godot/imported/draggable_rice.png-a7991c402e1107124928eb14eaa99213.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ingredients/Rice/draggable_rice.png"
-dest_files=["res://.godot/imported/draggable_rice.png-5ece3620eacf77d9d02233adb48c85e6.ctex"]
+source_file="res://Ingredients/rice/draggable_rice.png"
+dest_files=["res://.godot/imported/draggable_rice.png-a7991c402e1107124928eb14eaa99213.ctex"]
 
 [params]
 

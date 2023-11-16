@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m8sxg75v4fsc"
-path="res://.godot/imported/egg_draggable.png-fa96aca00752e641f5d5b89f2698e20b.ctex"
+path="res://.godot/imported/egg_draggable.png-f225644e06fc570f21c88ed4d237fccb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ingredients/Egg/egg_draggable.png"
-dest_files=["res://.godot/imported/egg_draggable.png-fa96aca00752e641f5d5b89f2698e20b.ctex"]
+source_file="res://Ingredients/egg/egg_draggable.png"
+dest_files=["res://.godot/imported/egg_draggable.png-f225644e06fc570f21c88ed4d237fccb.ctex"]
 
 [params]
 

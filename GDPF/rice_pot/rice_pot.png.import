@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjmqddcq37cpd"
-path="res://.godot/imported/draggable_water.png-29b34623a3e96ed249d4ec15744d79ab.ctex"
+uid="uid://botpcrev7ir8m"
+path="res://.godot/imported/rice_pot.png-86da8e20430f1b23c75da63625f20bdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ingredients/water/draggable_water.png"
-dest_files=["res://.godot/imported/draggable_water.png-29b34623a3e96ed249d4ec15744d79ab.ctex"]
+source_file="res://rice_pot/rice_pot.png"
+dest_files=["res://.godot/imported/rice_pot.png-86da8e20430f1b23c75da63625f20bdd.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

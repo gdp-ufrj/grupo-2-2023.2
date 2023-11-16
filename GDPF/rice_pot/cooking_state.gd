@@ -3,10 +3,10 @@ class_name CookingState
 
 signal cooking_finished
 
-@export var animator: AnimatedSprite2D
 @export var cooking_time: float
 
 @onready var pan : Pan = $"../../"
+@onready var animator: AnimatedSprite2D = pan.get_node("AnimatedSprite2D")
 @onready var _timer : Timer = pan.get_node("Timer")
 
 func _ready():
@@ -17,6 +17,7 @@ func _enter_state():
 	_timer.timeout.connect(_on_timer_timeout)
 	_timer.wait_time = cooking_time
 	_timer.start()
+	animator.play(get_name())
 	
 
 func _exit_state():

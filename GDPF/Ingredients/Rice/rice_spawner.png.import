@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boau8xa4roao7"
-path="res://.godot/imported/rice_spawner.png-9aa3c523015b24f925b6cf87225ef8b6.ctex"
+path="res://.godot/imported/rice_spawner.png-6ab00944b84cd2a8bccc363ed24e095c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ingredients/Rice/rice_spawner.png"
-dest_files=["res://.godot/imported/rice_spawner.png-9aa3c523015b24f925b6cf87225ef8b6.ctex"]
+source_file="res://Ingredients/rice/rice_spawner.png"
+dest_files=["res://.godot/imported/rice_spawner.png-6ab00944b84cd2a8bccc363ed24e095c.ctex"]
 
 [params]
 
