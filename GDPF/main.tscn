@@ -1,14 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=55 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/pan.gd" id="1_em2rm"]
 [ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
 [ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://ingredients/ingredient_spawner.tscn" id="3_j3iym"]
-[ext_resource type="Script" path="res://RicePan.gd" id="3_me5i6"]
+[ext_resource type="Script" path="res://rice_pan.gd" id="3_me5i6"]
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
 [ext_resource type="Texture2D" uid="uid://ykcirrfkst3p" path="res://stove/fire_knob.png" id="5_o13rw"]
+[ext_resource type="Texture2D" uid="uid://dr3lwrkar0utf" path="res://stove/fire.png" id="6_02aly"]
 [ext_resource type="Texture2D" uid="uid://boau8xa4roao7" path="res://ingredients/rice/rice_spawner.png" id="11_aeyct"]
+[ext_resource type="Texture2D" uid="uid://541631j0wpv4" path="res://stove/stove.png" id="11_hv8ii"]
 [ext_resource type="Texture2D" uid="uid://cydh3um7bj42j" path="res://ingredients/rice/draggable_rice.png" id="12_mxegt"]
+[ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
 [ext_resource type="Texture2D" uid="uid://d3fdsbiogbah0" path="res://ingredients/water/water_spawner.png" id="13_3oevs"]
+[ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://ingredients/water/water.png" id="13_204wg"]
 [ext_resource type="Texture2D" uid="uid://cjmqddcq37cpd" path="res://ingredients/water/draggable_water.png" id="14_ws4py"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g0tel"]
@@ -99,7 +103,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6wpb"]
-size = Vector2(32, 19)
+size = Vector2(23.5, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgy14"]
 atlas = ExtResource("5_o13rw")
@@ -131,51 +135,255 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5brh"]
 size = Vector2(12, 12)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_eurg6"]
+atlas = ExtResource("6_02aly")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmaqi"]
+atlas = ExtResource("6_02aly")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6yss"]
+atlas = ExtResource("6_02aly")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2wg8"]
+atlas = ExtResource("6_02aly")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idvjx"]
+atlas = ExtResource("6_02aly")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r7v0"]
+atlas = ExtResource("6_02aly")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ea0c"]
+atlas = ExtResource("6_02aly")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffu0o"]
+atlas = ExtResource("6_02aly")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a07m"]
+atlas = ExtResource("6_02aly")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48fpc"]
+atlas = ExtResource("6_02aly")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f1k1"]
+atlas = ExtResource("6_02aly")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6an8o"]
+atlas = ExtResource("6_02aly")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buvgt"]
+atlas = ExtResource("6_02aly")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wq0u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eurg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmaqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6yss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2wg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idvjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r7v0")
+}],
+"loop": true,
+"name": &"fire_loop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ea0c")
+}],
+"loop": true,
+"name": &"fire_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffu0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a07m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48fpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0f1k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6an8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buvgt")
+}],
+"loop": true,
+"name": &"fire_start",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prn0a"]
 size = Vector2(99, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cj4i"]
+atlas = ExtResource("13_204wg")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txejy"]
+atlas = ExtResource("13_204wg")
+region = Rect2(512, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5uj7"]
+atlas = ExtResource("13_204wg")
+region = Rect2(448, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqq1y"]
+atlas = ExtResource("13_204wg")
+region = Rect2(384, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwjl5"]
+atlas = ExtResource("13_204wg")
+region = Rect2(320, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfjir"]
+atlas = ExtResource("13_204wg")
+region = Rect2(256, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xts1h"]
+atlas = ExtResource("13_204wg")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhw18"]
+atlas = ExtResource("13_204wg")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w45g"]
+atlas = ExtResource("13_204wg")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_srq32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cj4i")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txejy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5uj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqq1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwjl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfjir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xts1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhw18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w45g")
+}],
+"loop": false,
+"name": &"released",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svjwd"]
+size = Vector2(48, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpxlt"]
+size = Vector2(5, 7)
 
 [node name="Kitchen" type="Node"]
 
 [node name="Stove" type="Node" parent="."]
 
-[node name="Pan" type="Node2D" parent="Stove"]
-position = Vector2(134, 113)
+[node name="RicePan" type="Node2D" parent="Stove"]
+position = Vector2(127, 157)
+scale = Vector2(2, 2)
 script = ExtResource("1_em2rm")
 pan_name = "rice_pan"
 metadata/_edit_group_ = true
 
-[node name="Timer" type="Timer" parent="Stove/Pan"]
+[node name="Timer" type="Timer" parent="Stove/RicePan"]
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/Pan"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/RicePan"]
+z_index = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_igyan")
 animation = &"OvercookedState"
 
-[node name="Area2D" type="Area2D" parent="Stove/Pan"]
+[node name="Area2D" type="Area2D" parent="Stove/RicePan"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/Pan/Area2D"]
-position = Vector2(0, 2.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/RicePan/Area2D"]
+position = Vector2(0.25, -1.5)
 shape = SubResource("RectangleShape2D_o6wpb")
 
-[node name="StateMachine" type="Node2D" parent="Stove/Pan"]
+[node name="StateMachine" type="Node2D" parent="Stove/RicePan"]
 position = Vector2(0, 2.5)
 script = ExtResource("3_me5i6")
 
-[node name="FireController" type="Node2D" parent="Stove/Pan"]
+[node name="FireController" type="Node2D" parent="Stove/RicePan"]
 script = ExtResource("4_i2gv8")
+metadata/_edit_group_ = true
 
-[node name="FireSprite" type="Sprite2D" parent="Stove/Pan/FireController"]
-
-[node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/Pan/FireController"]
-position = Vector2(-65, 20)
+[node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/RicePan/FireController"]
+position = Vector2(-1.5, 29.5)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_tib2l")
 animation = &"off"
+autoplay = "off"
 
-[node name="Area2D" type="Area2D" parent="Stove/Pan/FireController/KnobSprite"]
+[node name="Area2D" type="Area2D" parent="Stove/RicePan/FireController/KnobSprite"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/Pan/FireController/KnobSprite/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/RicePan/FireController/KnobSprite/Area2D"]
 shape = SubResource("RectangleShape2D_i5brh")
+
+[node name="FireSprite" type="AnimatedSprite2D" parent="Stove/RicePan/FireController"]
+position = Vector2(0, 11)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_3wq0u")
+animation = &"fire_off"
+autoplay = "fire_off"
+speed_scale = 2.0
+
+[node name="StoveSprite" type="Sprite2D" parent="Stove"]
 
 [node name="IngredientSpawners" type="Node" parent="."]
 
@@ -185,6 +393,7 @@ scale = Vector2(0.25, 0.25)
 ingredient_name = "rice"
 
 [node name="Sprite2D" parent="IngredientSpawners/RiceSpawner" index="0"]
+z_index = 10
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("11_aeyct")
 
@@ -193,6 +402,7 @@ position = Vector2(-1.5, -2)
 shape = SubResource("RectangleShape2D_prn0a")
 
 [node name="Sprite2D" parent="IngredientSpawners/RiceSpawner/DraggableIngredient" index="0"]
+z_index = 20
 scale = Vector2(0.446, 0.446)
 texture = ExtResource("12_mxegt")
 
@@ -202,21 +412,53 @@ scale = Vector2(0.25, 0.25)
 ingredient_name = "water"
 
 [node name="Sprite2D" parent="IngredientSpawners/WaterSpawner" index="0"]
+z_index = 10
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_3oevs")
 
 [node name="Sprite2D" parent="IngredientSpawners/WaterSpawner/DraggableIngredient" index="0"]
+z_index = 20
 scale = Vector2(0.066, 0.066)
 texture = ExtResource("14_ws4py")
 
-[connection signal="ingredient_released_on_pan" from="Stove/Pan" to="Stove/Pan" method="_on_ingredient_released_on_pan"]
-[connection signal="area_entered" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_area_exited"]
-[connection signal="mouse_entered" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Stove/Pan/Area2D" to="Stove/Pan" method="_on_area_2d_mouse_exited"]
-[connection signal="input_event" from="Stove/Pan/FireController/KnobSprite/Area2D" to="Stove/Pan/FireController" method="_on_area_2d_input_event"]
-[connection signal="ingredient_released" from="IngredientSpawners/RiceSpawner" to="Stove/Pan" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/WaterSpawner" to="Stove/Pan" method="_on_ingredient_released"]
+[node name="WaterContainer" type="Node2D" parent="IngredientSpawners"]
+position = Vector2(288, 153)
+script = ExtResource("12_ogbyf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IngredientSpawners/WaterContainer"]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_srq32")
+animation = &"released"
+autoplay = "idle"
+speed_scale = 2.0
+
+[node name="GrabArea" type="Area2D" parent="IngredientSpawners/WaterContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientSpawners/WaterContainer/GrabArea"]
+position = Vector2(1, -32.5)
+shape = SubResource("RectangleShape2D_svjwd")
+
+[node name="DropArea" type="Area2D" parent="IngredientSpawners/WaterContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientSpawners/WaterContainer/DropArea"]
+position = Vector2(-22.5, 12.5)
+shape = SubResource("RectangleShape2D_dpxlt")
+
+[node name="Stove2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(213, 120)
+texture = ExtResource("11_hv8ii")
+
+[connection signal="ingredient_released_on_pan" from="Stove/RicePan" to="Stove/RicePan" method="_on_ingredient_released_on_pan"]
+[connection signal="area_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Stove/RicePan/FireController/KnobSprite/Area2D" to="Stove/RicePan/FireController" method="_on_area_2d_input_event"]
+[connection signal="ingredient_released" from="IngredientSpawners/RiceSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/WaterSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
+[connection signal="input_event" from="IngredientSpawners/WaterContainer/GrabArea" to="IngredientSpawners/WaterContainer" method="_on_area_2d_input_event"]
 
 [editable path="IngredientSpawners/RiceSpawner"]
 [editable path="IngredientSpawners/WaterSpawner"]
