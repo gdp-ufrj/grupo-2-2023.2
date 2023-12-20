@@ -25,13 +25,13 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("2_kc8j4")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nj4ho"]
-atlas = ExtResource("2_kc8j4")
-region = Rect2(192, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xebu"]
 atlas = ExtResource("2_kc8j4")
 region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj4ho"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g52ji"]
 atlas = ExtResource("2_kc8j4")
@@ -73,18 +73,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nj4ho")
-}],
-"loop": true,
-"name": &"RiceAndWaterState",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_4xebu")
 }],
 "loop": true,
 "name": &"RiceState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj4ho")
+}],
+"loop": true,
+"name": &"RiceWithWaterState",
 "speed": 5.0
 }, {
 "frames": [{
@@ -118,7 +118,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/Pan"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_igyan")
-animation = &"OvercookedState"
+animation = &"RiceState"
 
 [node name="Area2D" type="Area2D" parent="Stove/Pan"]
 
