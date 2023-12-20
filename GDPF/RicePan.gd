@@ -5,6 +5,7 @@ var _current_state_name = "EmptyState"
 
 @onready var _pan : Pan = $"../"
 @onready var _animator: AnimatedSprite2D = _pan.get_node("AnimatedSprite2D")
+@onready var _fire_controller: FireController = _pan.get_node("FireController")
 @onready var _timer : Timer = _pan.get_node("Timer")
 
 var States = {
@@ -49,6 +50,13 @@ var States = {
 				_switch_to_state("OvercookedState"),
 				
 	},
+	"OvercookedState": {
+		"timer_wait": 5,
+		"on_timer_timeout":
+			func():
+				_switch_to_state("EmptyState")
+				_fire_controller.fire_turned_off.emit(),			
+	},
 }
 
 func _ready():
@@ -65,10 +73,22 @@ func _switch_to_state(next_state_name):
 		_pan.ingredient_released_on_pan.connect(next_state.get("on_ingredient_added"))
 		
 	if(current_state.get("on_timer_timeout")):
+		_timer.stop()
 		_timer.timeout.disconnect(current_state.get("on_timer_timeout"))
 	if(next_state.get("on_timer_timeout")):
 		_timer.wait_time = next_state.get("timer_wait")
+		_timer.start()
 		_timer.timeout.connect(next_state.get("on_timer_timeout"))
 		
+	if(current_state.get("on_fire_start")):
+		_fire_controller.fire_turned_on.disconnect(current_state.get("on_fire_start"))
+	if(next_state.get("on_fire_start")):
+		_fire_controller.fire_turned_on.connect(next_state.get("on_fire_start"))
+		
+	if(current_state.get("on_fire_stop")):
+		_fire_controller.fire_turned_off.disconnect(current_state.get("on_fire_stop"))
+	if(next_state.get("on_fire_stop")):
+		_fire_controller.fire_turned_off.connect(next_state.get("on_fire_stop"))
+	
 	_current_state_name = next_state_name
 
