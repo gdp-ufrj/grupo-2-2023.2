@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=52 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/pan.gd" id="1_em2rm"]
 [ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
@@ -7,13 +7,10 @@
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
 [ext_resource type="Texture2D" uid="uid://ykcirrfkst3p" path="res://stove/fire_knob.png" id="5_o13rw"]
 [ext_resource type="Texture2D" uid="uid://dr3lwrkar0utf" path="res://stove/fire.png" id="6_02aly"]
-[ext_resource type="Texture2D" uid="uid://boau8xa4roao7" path="res://ingredients/rice/rice_spawner.png" id="11_aeyct"]
-[ext_resource type="Texture2D" uid="uid://541631j0wpv4" path="res://stove/stove.png" id="11_hv8ii"]
-[ext_resource type="Texture2D" uid="uid://cydh3um7bj42j" path="res://ingredients/rice/draggable_rice.png" id="12_mxegt"]
+[ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://ingredients/ingredients.png" id="9_e8bw1"]
 [ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
-[ext_resource type="Texture2D" uid="uid://d3fdsbiogbah0" path="res://ingredients/water/water_spawner.png" id="13_3oevs"]
+[ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="13_3co5a"]
 [ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://ingredients/water/water.png" id="13_204wg"]
-[ext_resource type="Texture2D" uid="uid://cjmqddcq37cpd" path="res://ingredients/water/draggable_water.png" id="14_ws4py"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g0tel"]
 atlas = ExtResource("2_kc8j4")
@@ -103,7 +100,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6wpb"]
-size = Vector2(23.5, 11)
+size = Vector2(23.5, 13.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgy14"]
 atlas = ExtResource("5_o13rw")
@@ -245,7 +242,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prn0a"]
-size = Vector2(99, 116)
+size = Vector2(16.5, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cj4i"]
 atlas = ExtResource("13_204wg")
@@ -347,12 +344,13 @@ one_shot = true
 z_index = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_igyan")
-animation = &"OvercookedState"
+animation = &"EmptyState"
+autoplay = "EmptyState"
 
 [node name="Area2D" type="Area2D" parent="Stove/RicePan"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/RicePan/Area2D"]
-position = Vector2(0.25, -1.5)
+position = Vector2(0.25, -0.25)
 shape = SubResource("RectangleShape2D_o6wpb")
 
 [node name="StateMachine" type="Node2D" parent="Stove/RicePan"]
@@ -383,52 +381,40 @@ animation = &"fire_off"
 autoplay = "fire_off"
 speed_scale = 2.0
 
-[node name="StoveSprite" type="Sprite2D" parent="Stove"]
-
 [node name="IngredientSpawners" type="Node" parent="."]
 
 [node name="RiceSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
-position = Vector2(72, 42)
-scale = Vector2(0.25, 0.25)
+position = Vector2(150, 27)
 ingredient_name = "rice"
 
 [node name="Sprite2D" parent="IngredientSpawners/RiceSpawner" index="0"]
 z_index = 10
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("11_aeyct")
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 11
 
 [node name="CollisionShape2D" parent="IngredientSpawners/RiceSpawner/Area2D" index="0"]
-position = Vector2(-1.5, -2)
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_prn0a")
 
 [node name="Sprite2D" parent="IngredientSpawners/RiceSpawner/DraggableIngredient" index="0"]
 z_index = 20
-scale = Vector2(0.446, 0.446)
-texture = ExtResource("12_mxegt")
-
-[node name="WaterSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
-position = Vector2(220, 136)
-scale = Vector2(0.25, 0.25)
-ingredient_name = "water"
-
-[node name="Sprite2D" parent="IngredientSpawners/WaterSpawner" index="0"]
-z_index = 10
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_3oevs")
-
-[node name="Sprite2D" parent="IngredientSpawners/WaterSpawner/DraggableIngredient" index="0"]
-z_index = 20
-scale = Vector2(0.066, 0.066)
-texture = ExtResource("14_ws4py")
+scale = Vector2(1, 1)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 9
 
 [node name="WaterContainer" type="Node2D" parent="IngredientSpawners"]
-position = Vector2(288, 153)
+position = Vector2(210, 151)
 script = ExtResource("12_ogbyf")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IngredientSpawners/WaterContainer"]
 z_index = 10
 sprite_frames = SubResource("SpriteFrames_srq32")
-animation = &"released"
+animation = &"idle"
 autoplay = "idle"
 speed_scale = 2.0
 
@@ -444,21 +430,17 @@ shape = SubResource("RectangleShape2D_svjwd")
 position = Vector2(-22.5, 12.5)
 shape = SubResource("RectangleShape2D_dpxlt")
 
-[node name="Stove2" type="Sprite2D" parent="."]
-z_index = -1
+[node name="background" type="Sprite2D" parent="."]
+z_index = -20
 position = Vector2(213, 120)
-texture = ExtResource("11_hv8ii")
+texture = ExtResource("13_3co5a")
+metadata/_edit_lock_ = true
 
-[connection signal="ingredient_released_on_pan" from="Stove/RicePan" to="Stove/RicePan" method="_on_ingredient_released_on_pan"]
-[connection signal="area_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_area_exited"]
 [connection signal="mouse_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/RicePan/FireController/KnobSprite/Area2D" to="Stove/RicePan/FireController" method="_on_area_2d_input_event"]
 [connection signal="ingredient_released" from="IngredientSpawners/RiceSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/WaterSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
 [connection signal="input_event" from="IngredientSpawners/WaterContainer/GrabArea" to="IngredientSpawners/WaterContainer" method="_on_area_2d_input_event"]
 
 [editable path="IngredientSpawners/RiceSpawner"]
-[editable path="IngredientSpawners/WaterSpawner"]

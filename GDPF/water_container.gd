@@ -27,7 +27,7 @@ func _on_area_2d_input_event(_viewport, event, _shape_idx):
 			_click_offset = self.global_position - self.get_global_mouse_position()
 	
 func _on_water_released_animation_finished():
-	ingredient_released.emit(ingredient_name)
+	ingredient_released.emit(ingredient_name, _drop_area)
 	self.global_position = _initial_position
 	_animator.animation_finished.disconnect(_on_water_released_animation_finished)
 	_animator.play("idle")

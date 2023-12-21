@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpn6bji7dnqda"
-path="res://.godot/imported/pan_empty.png-5bf228b1d3f9fa5c461a99a4f0fec60f.ctex"
+uid="uid://df20d5yv2upf1"
+path="res://.godot/imported/ingredients.png-e604ac198e4beeb187d74d2cc3f5f520.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rice_pot/pan_empty.png"
-dest_files=["res://.godot/imported/pan_empty.png-5bf228b1d3f9fa5c461a99a4f0fec60f.ctex"]
+source_file="res://ingredients/ingredients.png"
+dest_files=["res://.godot/imported/ingredients.png-e604ac198e4beeb187d74d2cc3f5f520.ctex"]
 
 [params]
 

@@ -5,7 +5,7 @@ extends Node2D
 @onready var area2d: Area2D = $Area2D
 
 signal ingredient_released_outside_pan(ingredient)
-signal ingredient_released_on_pan(ingredient, pan)
+signal ingredient_released_on_pan(ingredient)
 
 var _is_mouse_inside = false
 

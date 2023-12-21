@@ -30,6 +30,10 @@ var States = {
 					_switch_to_state("RiceAndWaterState"),
 	},
 	"RiceAndWaterState": {
+		"on_state_enter":
+			func():
+				if(_fire_controller.state_is_on):
+					_switch_to_state("CookingState"),
 		"on_fire_start":
 			func():
 				_switch_to_state("CookingState"),
@@ -48,14 +52,13 @@ var States = {
 		"on_timer_timeout":
 			func():
 				_switch_to_state("OvercookedState"),
-				
 	},
 	"OvercookedState": {
 		"timer_wait": 5,
 		"on_timer_timeout":
 			func():
 				_switch_to_state("EmptyState")
-				_fire_controller.fire_turned_off.emit(),			
+				_fire_controller.fire_turned_off.emit(),
 	},
 }
 
@@ -63,11 +66,12 @@ func _ready():
 	_switch_to_state(_current_state_name)
 
 func _switch_to_state(next_state_name):
+	print("from " + _current_state_name + " to " + next_state_name)
 	var current_state = States.get(_current_state_name)
 	var next_state = States.get(next_state_name)
 	_animator.play(next_state_name)
 	
-	if(current_state.get("on_ingredient_added")):
+	if(current_state.get("on_ingredient_added") and _pan.ingredient_released_on_pan.is_connected(current_state.get("on_ingredient_added"))):
 		_pan.ingredient_released_on_pan.disconnect(current_state.get("on_ingredient_added"))
 	if(next_state.get("on_ingredient_added")):
 		_pan.ingredient_released_on_pan.connect(next_state.get("on_ingredient_added"))
@@ -91,4 +95,6 @@ func _switch_to_state(next_state_name):
 		_fire_controller.fire_turned_off.connect(next_state.get("on_fire_stop"))
 	
 	_current_state_name = next_state_name
+	if(next_state.get("on_state_enter")):
+		next_state.get("on_state_enter").call()
 
