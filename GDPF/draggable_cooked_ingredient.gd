@@ -5,12 +5,12 @@ extends Node2D
 @onready var _initial_position = self.global_position
 
 
-func _on_grabbed_cooked_ingredient(ingredient_name):
+func _on_grabbed_cooked_ingredient(_ingredient_name):
 	self._sprite.visible = true
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func _on_released_cooked_ingredient(ingredient_name):
+func _on_released_cooked_ingredient(_ingredient_name):
 	self._sprite.visible = false
 	self.global_position = _initial_position
 	self.process_mode = Node.PROCESS_MODE_DISABLED
