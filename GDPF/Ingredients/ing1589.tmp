@@ -31,7 +31,8 @@ load_path = "res://.godot/imported/egg_spawner.png-68d1a6fd693853e94552854a84b1c
 size = Vector2(100, 134)
 
 [sub_resource type="GDScript" id="GDScript_c5iwx"]
-script/source = "extends Node2D
+script/source = "
+extends Node2D
 
 @onready var _sprite = $Sprite2D
 @onready var _initial_position = self.global_position

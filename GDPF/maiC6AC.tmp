@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
 [ext_resource type="Texture2D" uid="uid://ykcirrfkst3p" path="res://stove/fire_knob.png" id="5_o13rw"]
 [ext_resource type="Texture2D" uid="uid://dr3lwrkar0utf" path="res://stove/fire.png" id="6_02aly"]
-[ext_resource type="Script" path="res://draggable_cooked_ingredient.gd" id="6_voiik"]
 [ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://ingredients/ingredients.png" id="9_e8bw1"]
 [ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
 [ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="13_3co5a"]
@@ -241,6 +240,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_c5iwx"]
+script/source = "class_name DraggableCookedIngredient
+extends Node2D
+
+@onready var _sprite = $Sprite2D
+@onready var _initial_position = self.global_position
+
+
+func _on_grabbed_cooked_ingredient():
+	self._sprite.visible = true
+	self.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_released_cooked_ingredient(_ingredient):
+	self._sprite.visible = false
+	self.global_position = _initial_position
+	self.process_mode = Node.PROCESS_MODE_DISABLED
+	
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		# Update the node's position to follow the mouse
+		self.global_position = event.position
+
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prn0a"]
 size = Vector2(16.5, 24)
 
@@ -375,7 +400,7 @@ speed_scale = 2.0
 
 [node name="DraggableCookedIngredient" type="Node2D" parent="Stove/RicePan"]
 process_mode = 4
-script = ExtResource("6_voiik")
+script = SubResource("GDScript_c5iwx")
 
 [node name="Sprite2D" type="Sprite2D" parent="Stove/RicePan/DraggableCookedIngredient"]
 visible = false
@@ -441,7 +466,6 @@ texture = ExtResource("13_3co5a")
 metadata/_edit_lock_ = true
 
 [connection signal="grabbed_cooked_ingredient" from="Stove/RicePan" to="Stove/RicePan/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/RicePan" to="Stove/RicePan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/RicePan/FireController/KnobSprite/Area2D" to="Stove/RicePan/FireController" method="_on_area_2d_input_event"]
