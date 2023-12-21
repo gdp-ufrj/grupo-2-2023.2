@@ -84,7 +84,7 @@ var States = {
 				_switch_to_state("CookingState"),
 	},
 	"CookingState": {
-		"timer_wait": 5,
+		"timer_wait": 8,
 		"on_fire_stop":
 			func():
 				_switch_to_state("RiceAndWaterState"),
@@ -93,7 +93,7 @@ var States = {
 				_switch_to_state("CookedState"),
 	},
 	"CookedState": {
-		"timer_wait": 8,
+		"timer_wait": 6,
 		"on_state_enter":
 			func():
 				_ingredient_count = serving_amount,
@@ -108,7 +108,7 @@ var States = {
 				_timer.start(),
 	},
 	"OvercookedState": {
-		"timer_wait": 6,
+		"timer_wait": 5,
 		"on_timer_timeout":
 			func():
 				_switch_to_state("EmptyState")
