@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=57 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="13_3co5a"]
 [ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://ingredients/water/water.png" id="13_204wg"]
 [ext_resource type="Texture2D" uid="uid://gkle5moxok6m" path="res://trashcan/trashcan.png" id="14_88k3u"]
-[ext_resource type="Script" path="res://trashcan.gd" id="14_ejdbd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g0tel"]
 atlas = ExtResource("2_kc8j4")
@@ -455,28 +454,28 @@ position = Vector2(223, 154)
 texture = ExtResource("12_h3fyd")
 vframes = 8
 
-[node name="cooked_beans" type="Sprite2D" parent="LunchBowl/Sprites"]
+[node name="beans" type="Sprite2D" parent="LunchBowl/Sprites"]
 visible = false
 position = Vector2(223, 154)
 texture = ExtResource("12_h3fyd")
 vframes = 8
 frame = 1
 
-[node name="cooked_rice" type="Sprite2D" parent="LunchBowl/Sprites"]
+[node name="rice" type="Sprite2D" parent="LunchBowl/Sprites"]
 visible = false
 position = Vector2(223, 154)
 texture = ExtResource("12_h3fyd")
 vframes = 8
 frame = 2
 
-[node name="cooked_pasta" type="Sprite2D" parent="LunchBowl/Sprites"]
+[node name="pasta" type="Sprite2D" parent="LunchBowl/Sprites"]
 visible = false
 position = Vector2(223, 154)
 texture = ExtResource("12_h3fyd")
 vframes = 8
 frame = 3
 
-[node name="cooked_chicken" type="Sprite2D" parent="LunchBowl/Sprites"]
+[node name="chicken" type="Sprite2D" parent="LunchBowl/Sprites"]
 visible = false
 position = Vector2(223, 154)
 texture = ExtResource("12_h3fyd")
@@ -490,7 +489,7 @@ texture = ExtResource("12_h3fyd")
 vframes = 8
 frame = 5
 
-[node name="cooked_egg" type="Sprite2D" parent="LunchBowl/Sprites"]
+[node name="egg" type="Sprite2D" parent="LunchBowl/Sprites"]
 visible = false
 position = Vector2(223, 154)
 texture = ExtResource("12_h3fyd")
@@ -517,7 +516,6 @@ metadata/_edit_lock_ = true
 
 [node name="Trashcan" type="Node2D" parent="."]
 position = Vector2(261, 213)
-script = ExtResource("14_ejdbd")
 
 [node name="TrashcanSprite" type="Sprite2D" parent="Trashcan"]
 texture = ExtResource("14_88k3u")
@@ -530,17 +528,11 @@ shape = SubResource("RectangleShape2D_tqybt")
 
 [connection signal="grabbed_cooked_ingredient" from="Stove/RicePan" to="Stove/RicePan/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/RicePan" to="Stove/RicePan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/RicePan" to="LunchBowl" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/RicePan" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/RicePan/FireController/KnobSprite/Area2D" to="Stove/RicePan/FireController" method="_on_area_2d_input_event"]
 [connection signal="ingredient_released" from="IngredientSpawners/RiceSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
 [connection signal="input_event" from="IngredientSpawners/WaterContainer/GrabArea" to="IngredientSpawners/WaterContainer" method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_entered" from="Trashcan/Area2D" to="Trashcan" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Trashcan/Area2D" to="Trashcan" method="_on_area_2d_mouse_exited"]
 
 [editable path="IngredientSpawners/RiceSpawner"]

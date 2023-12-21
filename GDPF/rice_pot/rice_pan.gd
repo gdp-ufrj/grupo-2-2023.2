@@ -4,11 +4,11 @@ extends Node2D
 signal ingredient_released_outside_pan(ingredient)
 signal ingredient_released_on_pan(ingredient)
 signal grabbed_cooked_ingredient(ingredient)
-signal released_cooked_ingredient(ingredient)
+signal released_cooked_ingredient(ingredient, decrease_ingredient)
 
 @export var pan_name: String = "rice_pan"
 @export var output_ingredient_name: String = "cooked_rice"
-@export var serving_amount: int = 5
+@export var serving_amount: int = 3
 
 @onready var area2d: Area2D = $Area2D
 @onready var _pan : RicePan = self
@@ -24,6 +24,9 @@ var _ingredient_count = 0
 func _on_ingredient_released(ingredient):
 	if (_is_mouse_inside_pan):
 		ingredient_released_on_pan.emit(ingredient)
+
+func decrease_ingredient():
+	_ingredient_count -= 1
 		
 func _input(event):
 	if event is InputEventMouseButton:
@@ -31,9 +34,8 @@ func _input(event):
 			grabbed_cooked_ingredient.emit(output_ingredient_name)
 			_is_grabbing_ingredient = true
 		if event.is_action_released("left_mouse") and _is_grabbing_ingredient:
-			released_cooked_ingredient.emit(output_ingredient_name)
+			released_cooked_ingredient.emit(output_ingredient_name, decrease_ingredient)
 			_is_grabbing_ingredient = false
-			_ingredient_count -= 1
 			if(_ingredient_count == 0):
 				_switch_to_state("EmptyState")
 
@@ -91,7 +93,7 @@ var States = {
 				_switch_to_state("CookedState"),
 	},
 	"CookedState": {
-		"timer_wait": 5,
+		"timer_wait": 8,
 		"on_state_enter":
 			func():
 				_ingredient_count = serving_amount,
@@ -106,7 +108,7 @@ var States = {
 				_timer.start(),
 	},
 	"OvercookedState": {
-		"timer_wait": 5,
+		"timer_wait": 6,
 		"on_timer_timeout":
 			func():
 				_switch_to_state("EmptyState")
