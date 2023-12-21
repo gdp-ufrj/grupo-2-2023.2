@@ -1,8 +1,9 @@
-[gd_scene load_steps=59 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=68 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
 [ext_resource type="Texture2D" uid="uid://btanrns7dlcuf" path="res://beans_pot/beans_pot.png" id="2_2yt8f"]
+[ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
 [ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://ingredients/ingredient_spawner.tscn" id="3_j3iym"]
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
 [ext_resource type="Texture2D" uid="uid://ykcirrfkst3p" path="res://stove/fire_knob.png" id="5_o13rw"]
@@ -17,39 +18,39 @@
 [ext_resource type="Texture2D" uid="uid://gkle5moxok6m" path="res://trashcan/trashcan.png" id="14_88k3u"]
 [ext_resource type="Script" path="res://trashcan.gd" id="14_ejdbd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oio06"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvjb6"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1dk7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_du456"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5w86c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydtta"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bpowe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrgdo"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5n6tp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpojd"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4ppj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1x6e"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bc2ns"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqcrg"]
 atlas = ExtResource("2_2yt8f")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_igyan"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2itr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oio06")
+"texture": SubResource("AtlasTexture_wvjb6")
 }],
 "loop": true,
 "name": &"BeansAndWaterState",
@@ -57,7 +58,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b1dk7")
+"texture": SubResource("AtlasTexture_du456")
 }],
 "loop": true,
 "name": &"BeansState",
@@ -65,7 +66,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5w86c")
+"texture": SubResource("AtlasTexture_ydtta")
 }],
 "loop": true,
 "name": &"CookedState",
@@ -73,7 +74,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bpowe")
+"texture": SubResource("AtlasTexture_hrgdo")
 }],
 "loop": true,
 "name": &"CookingState",
@@ -81,7 +82,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5n6tp")
+"texture": SubResource("AtlasTexture_qpojd")
 }],
 "loop": true,
 "name": &"EmptyState",
@@ -89,7 +90,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y4ppj")
+"texture": SubResource("AtlasTexture_w1x6e")
 }],
 "loop": true,
 "name": &"OvercookedState",
@@ -97,7 +98,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bc2ns")
+"texture": SubResource("AtlasTexture_yqcrg")
 }],
 "loop": true,
 "name": &"WaterState",
@@ -246,6 +247,93 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmilq"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdkdn"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykftv"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a282"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4xm5"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh0xe"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i6uu"]
+atlas = ExtResource("2_kc8j4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_igyan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmilq")
+}],
+"loop": true,
+"name": &"CookedState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdkdn")
+}],
+"loop": true,
+"name": &"CookingState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykftv")
+}],
+"loop": true,
+"name": &"EmptyState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a282")
+}],
+"loop": true,
+"name": &"OvercookedState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4xm5")
+}],
+"loop": true,
+"name": &"RiceAndWaterState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh0xe")
+}],
+"loop": true,
+"name": &"RiceState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i6uu")
+}],
+"loop": true,
+"name": &"WaterState",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prn0a"]
 size = Vector2(16.5, 24)
 
@@ -351,9 +439,8 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/BeansPot"]
 z_index = 1
-sprite_frames = SubResource("SpriteFrames_igyan")
-animation = &"EmptyState"
-autoplay = "EmptyState"
+sprite_frames = SubResource("SpriteFrames_t2itr")
+animation = &"WaterState"
 
 [node name="Area2D" type="Area2D" parent="Stove/BeansPot"]
 
@@ -381,7 +468,7 @@ shape = SubResource("RectangleShape2D_i5brh")
 [node name="FireSprite" type="AnimatedSprite2D" parent="Stove/BeansPot/FireController"]
 position = Vector2(-23, -38)
 sprite_frames = SubResource("SpriteFrames_3wq0u")
-animation = &"fire_off"
+animation = &"fire_loop"
 autoplay = "fire_off"
 speed_scale = 2.0
 
@@ -399,7 +486,7 @@ vframes = 6
 frame = 7
 
 [node name="RicePan" type="Node2D" parent="Stove"]
-position = Vector2(127, 157)
+position = Vector2(47, 103)
 script = ExtResource("1_jx7bk")
 metadata/_edit_group_ = true
 
@@ -409,7 +496,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/RicePan"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_igyan")
-animation = &"EmptyState"
+animation = &"WaterState"
 autoplay = "EmptyState"
 
 [node name="Area2D" type="Area2D" parent="Stove/RicePan"]
@@ -420,6 +507,7 @@ position = Vector2(0.25, -0.25)
 shape = SubResource("RectangleShape2D_o6wpb")
 
 [node name="FireController" type="Node2D" parent="Stove/RicePan"]
+position = Vector2(-16, 60)
 script = ExtResource("4_i2gv8")
 metadata/_edit_group_ = true
 
@@ -435,9 +523,9 @@ autoplay = "off"
 shape = SubResource("RectangleShape2D_i5brh")
 
 [node name="FireSprite" type="AnimatedSprite2D" parent="Stove/RicePan/FireController"]
-position = Vector2(0, 22)
+position = Vector2(16, -38)
 sprite_frames = SubResource("SpriteFrames_3wq0u")
-animation = &"fire_off"
+animation = &"fire_loop"
 autoplay = "fire_off"
 speed_scale = 2.0
 
