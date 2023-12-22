@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3poo7bdhm2vk"]
+
+[sub_resource type="GDScript" id="GDScript_qsv2l"]
+script/source = "
+extends Node2D
+
+signal ingredient_grabbed
+signal ingredient_released(ingredient)
+
+@export var ingredient_name:String = \"rice\"
+
+var _is_grabbing_ingredient := false
+
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton:
+		if event.is_action_pressed(\"left_mouse\"):
+			_is_grabbing_ingredient = true
+			ingredient_grabbed.emit()
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_action_released(\"left_mouse\") and _is_grabbing_ingredient:
+			ingredient_released.emit(ingredient_name)
+			_is_grabbing_ingredient = false
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pndg0"]
+load_path = "res://.godot/imported/egg_spawner.png-68d1a6fd693853e94552854a84b1cf03.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2o78w"]
+size = Vector2(100, 134)
+
+[sub_resource type="GDScript" id="GDScript_c5iwx"]
+script/source = "class_name DraggableIngredients
+extends Node2D
+
+@onready var _sprite = $Sprite2D
+@onready var _initial_position = self.global_position
+
+
+func _on_grabbed_cooked_ingredient():
+	self._sprite.visible = true
+	self.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_released_cooked_ingredient(_ingredient):
+	self._sprite.visible = false
+	self.global_position = _initial_position
+	self.process_mode = Node.PROCESS_MODE_DISABLED
+	
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		# Update the node's position to follow the mouse
+		self.global_position = event.position
+
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8geij"]
+load_path = "res://.godot/imported/egg_draggable.png-60a08386e42fbd9ac50c2a5a48423d83.ctex"
+
+[node name="IngredientSpawner" type="Node2D"]
+position = Vector2(582, 291)
+script = SubResource("GDScript_qsv2l")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_pndg0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_2o78w")
+
+[node name="DraggableIngredient" type="Node2D" parent="."]
+process_mode = 4
+script = SubResource("GDScript_c5iwx")
+
+[node name="Sprite2D" type="Sprite2D" parent="DraggableIngredient"]
+visible = false
+position = Vector2(-2, 4)
+scale = Vector2(0.046, 0.046)
+texture = SubResource("CompressedTexture2D_8geij")
+
+[connection signal="ingredient_grabbed" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_grabbed"]
+[connection signal="ingredient_released" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_released"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
