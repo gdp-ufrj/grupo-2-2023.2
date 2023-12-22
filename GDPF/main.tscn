@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=95 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
@@ -12,10 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://ingredients/ingredients.png" id="9_e8bw1"]
 [ext_resource type="Script" path="res://pasta_pot/pasta_pot.gd" id="10_3kr8o"]
 [ext_resource type="Script" path="res://LunchBowl.gd" id="11_7wxfa"]
+[ext_resource type="Texture2D" uid="uid://d2f3dcjl8031c" path="res://pasta_pot/pasta_pot.png" id="11_igerw"]
+[ext_resource type="Script" path="res://protein_pan/protein_pan.gd" id="12_6l88t"]
 [ext_resource type="Texture2D" uid="uid://frv7w0f4r8d" path="res://lunch_bowl/lunch_bowl_food.png" id="12_h3fyd"]
 [ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
 [ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="13_3co5a"]
 [ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://ingredients/water/water.png" id="13_204wg"]
+[ext_resource type="Texture2D" uid="uid://d1dpuf0vv5jqp" path="res://protein_pan/protein_pan.png" id="13_gpydv"]
 [ext_resource type="Texture2D" uid="uid://gkle5moxok6m" path="res://trashcan/trashcan.png" id="14_88k3u"]
 [ext_resource type="Script" path="res://trashcan.gd" id="14_ejdbd"]
 
@@ -335,13 +338,206 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_thq7r"]
+atlas = ExtResource("11_igerw")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keuwn"]
+atlas = ExtResource("11_igerw")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bkg8"]
+atlas = ExtResource("11_igerw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mqyn"]
+atlas = ExtResource("11_igerw")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvjt3"]
+atlas = ExtResource("11_igerw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287wy"]
+atlas = ExtResource("11_igerw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy7y0"]
+atlas = ExtResource("11_igerw")
+region = Rect2(64, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_w0cnn"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thq7r")
+}],
 "loop": true,
-"name": &"e",
+"name": &"CookedState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keuwn")
+}],
+"loop": true,
+"name": &"CookingState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bkg8")
+}],
+"loop": true,
+"name": &"EmptyState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mqyn")
+}],
+"loop": true,
+"name": &"OvercookedState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvjt3")
+}],
+"loop": true,
+"name": &"PastaAndWaterState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287wy")
+}],
+"loop": true,
+"name": &"PastaState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy7y0")
+}],
+"loop": true,
+"name": &"WaterState",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jva0w"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(324, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bmr"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(405, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0lft"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(162, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbq63"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(324, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icyfb"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(81, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abysj"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(81, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swcje"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(0, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sxg2"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(243, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6hyh"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(486, 0, 81, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqgmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jva0w")
+}],
+"loop": true,
+"name": &"ChickenState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5bmr")
+}],
+"loop": true,
+"name": &"CookedChickenState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0lft")
+}],
+"loop": true,
+"name": &"CookedEggState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbq63")
+}],
+"loop": true,
+"name": &"CookingChickenState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icyfb")
+}],
+"loop": true,
+"name": &"CookingEggState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abysj")
+}],
+"loop": true,
+"name": &"EggState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swcje")
+}],
+"loop": true,
+"name": &"EmptyState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sxg2")
+}],
+"loop": true,
+"name": &"OvercookedChickenState",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6hyh")
+}],
+"loop": true,
+"name": &"OvercookedEggState",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utqdk"]
+size = Vector2(51, 21.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prn0a"]
 size = Vector2(16.5, 24)
@@ -438,7 +634,7 @@ animations = [{
 size = Vector2(48, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpxlt"]
-size = Vector2(5, 7)
+size = Vector2(5, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbcl"]
 size = Vector2(37, 21)
@@ -564,7 +760,7 @@ vframes = 6
 frame = 10
 
 [node name="PastaPot" type="Node2D" parent="Stove"]
-position = Vector2(47, 103)
+position = Vector2(47, 157)
 script = ExtResource("10_3kr8o")
 metadata/_edit_group_ = true
 
@@ -574,7 +770,8 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/PastaPot"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_w0cnn")
-animation = &"e"
+animation = &"EmptyState"
+autoplay = "EmptyState"
 
 [node name="Area2D" type="Area2D" parent="Stove/PastaPot"]
 
@@ -584,7 +781,7 @@ position = Vector2(0.25, -0.25)
 shape = SubResource("RectangleShape2D_o6wpb")
 
 [node name="FireController" type="Node2D" parent="Stove/PastaPot"]
-position = Vector2(-16, 60)
+position = Vector2(7, 0)
 script = ExtResource("4_i2gv8")
 metadata/_edit_group_ = true
 
@@ -600,7 +797,7 @@ autoplay = "off"
 shape = SubResource("RectangleShape2D_i5brh")
 
 [node name="FireSprite" type="AnimatedSprite2D" parent="Stove/PastaPot/FireController"]
-position = Vector2(16, -38)
+position = Vector2(-7, 22)
 sprite_frames = SubResource("SpriteFrames_3wq0u")
 animation = &"fire_loop"
 autoplay = "fire_off"
@@ -617,7 +814,64 @@ position = Vector2(-2, 4)
 texture = ExtResource("9_e8bw1")
 hframes = 3
 vframes = 6
-frame = 10
+frame = 16
+
+[node name="ProteinPan" type="Node2D" parent="Stove"]
+position = Vector2(138, 164)
+script = ExtResource("12_6l88t")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="Stove/ProteinPan"]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/ProteinPan"]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_pqgmv")
+animation = &"EmptyState"
+autoplay = "EmptyState"
+
+[node name="Area2D" type="Area2D" parent="Stove/ProteinPan"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/ProteinPan/Area2D"]
+z_index = 100
+position = Vector2(-11.5, 0.375)
+shape = SubResource("RectangleShape2D_utqdk")
+
+[node name="FireController" type="Node2D" parent="Stove/ProteinPan"]
+position = Vector2(-11, -7)
+script = ExtResource("4_i2gv8")
+metadata/_edit_group_ = true
+
+[node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/ProteinPan/FireController"]
+position = Vector2(-3, 59)
+sprite_frames = SubResource("SpriteFrames_tib2l")
+animation = &"off"
+autoplay = "off"
+
+[node name="Area2D" type="Area2D" parent="Stove/ProteinPan/FireController/KnobSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/ProteinPan/FireController/KnobSprite/Area2D"]
+shape = SubResource("RectangleShape2D_i5brh")
+
+[node name="FireSprite" type="AnimatedSprite2D" parent="Stove/ProteinPan/FireController"]
+position = Vector2(0, 22)
+sprite_frames = SubResource("SpriteFrames_3wq0u")
+animation = &"fire_loop"
+autoplay = "fire_off"
+speed_scale = 2.0
+
+[node name="DraggableCookedIngredient" type="Node2D" parent="Stove/ProteinPan"]
+process_mode = 4
+script = ExtResource("6_voiik")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/ProteinPan/DraggableCookedIngredient"]
+visible = false
+z_index = 20
+position = Vector2(-11, 2)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 4
 
 [node name="IngredientSpawners" type="Node" parent="."]
 
@@ -785,7 +1039,7 @@ shape = SubResource("RectangleShape2D_svjwd")
 [node name="DropArea" type="Area2D" parent="IngredientSpawners/WaterContainer"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientSpawners/WaterContainer/DropArea"]
-position = Vector2(-22.5, 12.5)
+position = Vector2(-22.5, 1)
 shape = SubResource("RectangleShape2D_dpxlt")
 
 [node name="LunchBowl" type="Node2D" parent="."]
@@ -893,14 +1147,22 @@ shape = SubResource("RectangleShape2D_tqybt")
 [connection signal="mouse_entered" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/PastaPot/FireController/KnobSprite/Area2D" to="Stove/PastaPot/FireController" method="_on_area_2d_input_event"]
+[connection signal="grabbed_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Trashcan" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
+[connection signal="mouse_entered" from="Stove/ProteinPan/Area2D" to="Stove/ProteinPan" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Stove/ProteinPan/Area2D" to="Stove/ProteinPan" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Stove/ProteinPan/FireController/KnobSprite/Area2D" to="Stove/ProteinPan/FireController" method="_on_area_2d_input_event"]
 [connection signal="ingredient_released" from="IngredientSpawners/RiceSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/BeansSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/PastaSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/SaladSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/ChickenSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/EggSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/PastaSpawner" to="Stove/PastaPot" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/SaladSpawner" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="ingredient_released" from="IngredientSpawners/ChickenSpawner" to="Stove/ProteinPan" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/EggSpawner" to="Stove/ProteinPan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/BeansPot" method="_on_water_container_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/PastaPot" method="_on_water_container_ingredient_released"]
 [connection signal="input_event" from="IngredientSpawners/WaterContainer/GrabArea" to="IngredientSpawners/WaterContainer" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_exited"]

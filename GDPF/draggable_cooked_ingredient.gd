@@ -6,6 +6,10 @@ extends Node2D
 
 
 func _on_grabbed_cooked_ingredient(_ingredient_name):
+	if(_ingredient_name == "cooked_chicken"):
+		self._sprite.frame = 1
+	if(_ingredient_name == "cooked_egg"):
+		self._sprite.frame = 4
 	self._sprite.visible = true
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 

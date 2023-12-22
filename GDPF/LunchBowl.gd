@@ -27,7 +27,7 @@ func _on_area_2d_mouse_exited():
 	_is_mouse_inside_lunch_bowl = false
 
 
-func _on_released_cooked_ingredient(ingredient, decrease_ingredient):
+func _on_released_cooked_ingredient(ingredient, decrease_ingredient = func():pass,):
 	if (_is_mouse_inside_lunch_bowl and possible_ingredients.has(ingredient)):
 		if(!current_ingredients.has(ingredient)):
 			decrease_ingredient.call()
