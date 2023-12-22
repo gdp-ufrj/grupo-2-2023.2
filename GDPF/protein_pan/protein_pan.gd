@@ -86,7 +86,7 @@ var States = {
 				_switch_to_state("CookingChickenState"),
 	},
 	"CookingEggState": {
-		"timer_wait": 8,
+		"timer_wait": 3,
 		"on_fire_stop":
 			func():
 				_switch_to_state("EggState"),
@@ -95,7 +95,7 @@ var States = {
 				_switch_to_state("CookedEggState"),
 	},
 	"CookingChickenState": {
-		"timer_wait": 8,
+		"timer_wait": 5,
 		"on_fire_stop":
 			func():
 				_switch_to_state("ChickenState"),
@@ -104,7 +104,7 @@ var States = {
 				_switch_to_state("CookedChickenState"),
 	},
 	"CookedEggState": {
-		"timer_wait": 6,
+		"timer_wait": 5,
 		"on_state_enter":
 			func():
 				_ingredient_count = serving_amount,
@@ -119,7 +119,7 @@ var States = {
 				_timer.start(),
 	},
 	"CookedChickenState": {
-		"timer_wait": 6,
+		"timer_wait": 4,
 		"on_state_enter":
 			func():
 				_ingredient_count = serving_amount,
