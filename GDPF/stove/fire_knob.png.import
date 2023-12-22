@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m8sxg75v4fsc"
-path="res://.godot/imported/egg_draggable.png-a64c5dd7b03885510cd50aadacda7a10.ctex"
+uid="uid://ykcirrfkst3p"
+path="res://.godot/imported/fire_knob.png-846eb2c1a205103e4a2981e0a01fb720.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Egg/egg_draggable.png"
-dest_files=["res://.godot/imported/egg_draggable.png-a64c5dd7b03885510cd50aadacda7a10.ctex"]
+source_file="res://stove/fire_knob.png"
+dest_files=["res://.godot/imported/fire_knob.png-846eb2c1a205103e4a2981e0a01fb720.ctex"]
 
 [params]
 

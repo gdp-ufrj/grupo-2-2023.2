@@ -10,10 +10,20 @@ config_version=5
 
 [application]
 
-config/name="Novo Projeto De Jogo"
-run/main_scene="res://node.tscn"
+config/name="GDPF"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=426
+window/size/viewport_height=240
+window/stretch/mode="canvas_items"
+
+[editor]
+
+script/templates_search_path="res://Common/Templates"
 
 [input]
 
@@ -25,5 +35,6 @@ left_mouse={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

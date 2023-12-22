@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm86op1qdupas"
-path="res://.godot/imported/egg_spawner.png-3124863c89f81c3f16964be6fe59f114.ctex"
+uid="uid://541631j0wpv4"
+path="res://.godot/imported/stove.png-60f4f2e8144d96ec3620d7ece4c8f385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Egg/egg_spawner.png"
-dest_files=["res://.godot/imported/egg_spawner.png-3124863c89f81c3f16964be6fe59f114.ctex"]
+source_file="res://stove/stove.png"
+dest_files=["res://.godot/imported/stove.png-60f4f2e8144d96ec3620d7ece4c8f385.ctex"]
 
 [params]
 
