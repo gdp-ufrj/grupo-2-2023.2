@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=74 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dr3lwrkar0utf" path="res://stove/fire.png" id="6_02aly"]
 [ext_resource type="Script" path="res://draggable_cooked_ingredient.gd" id="6_voiik"]
 [ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://ingredients/ingredients.png" id="9_e8bw1"]
+[ext_resource type="Script" path="res://pasta_pot/pasta_pot.gd" id="10_3kr8o"]
 [ext_resource type="Script" path="res://LunchBowl.gd" id="11_7wxfa"]
 [ext_resource type="Texture2D" uid="uid://frv7w0f4r8d" path="res://lunch_bowl/lunch_bowl_food.png" id="12_h3fyd"]
 [ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
@@ -334,8 +335,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0cnn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"e",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prn0a"]
 size = Vector2(16.5, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktohm"]
+size = Vector2(38, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04k7x"]
+size = Vector2(36, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru82v"]
+size = Vector2(28, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv58q"]
+size = Vector2(34, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cj4i"]
 atlas = ExtResource("13_204wg")
@@ -542,6 +563,62 @@ hframes = 3
 vframes = 6
 frame = 10
 
+[node name="PastaPot" type="Node2D" parent="Stove"]
+position = Vector2(47, 103)
+script = ExtResource("10_3kr8o")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="Stove/PastaPot"]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stove/PastaPot"]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_w0cnn")
+animation = &"e"
+
+[node name="Area2D" type="Area2D" parent="Stove/PastaPot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/PastaPot/Area2D"]
+z_index = 100
+position = Vector2(0.25, -0.25)
+shape = SubResource("RectangleShape2D_o6wpb")
+
+[node name="FireController" type="Node2D" parent="Stove/PastaPot"]
+position = Vector2(-16, 60)
+script = ExtResource("4_i2gv8")
+metadata/_edit_group_ = true
+
+[node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/PastaPot/FireController"]
+position = Vector2(-3, 59)
+sprite_frames = SubResource("SpriteFrames_tib2l")
+animation = &"off"
+autoplay = "off"
+
+[node name="Area2D" type="Area2D" parent="Stove/PastaPot/FireController/KnobSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stove/PastaPot/FireController/KnobSprite/Area2D"]
+shape = SubResource("RectangleShape2D_i5brh")
+
+[node name="FireSprite" type="AnimatedSprite2D" parent="Stove/PastaPot/FireController"]
+position = Vector2(16, -38)
+sprite_frames = SubResource("SpriteFrames_3wq0u")
+animation = &"fire_loop"
+autoplay = "fire_off"
+speed_scale = 2.0
+
+[node name="DraggableCookedIngredient" type="Node2D" parent="Stove/PastaPot"]
+process_mode = 4
+script = ExtResource("6_voiik")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stove/PastaPot/DraggableCookedIngredient"]
+visible = false
+z_index = 20
+position = Vector2(-2, 4)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 10
+
 [node name="IngredientSpawners" type="Node" parent="."]
 
 [node name="RiceSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
@@ -590,6 +667,102 @@ texture = ExtResource("9_e8bw1")
 hframes = 3
 vframes = 6
 frame = 6
+
+[node name="PastaSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
+position = Vector2(146, 60)
+ingredient_name = "pasta"
+
+[node name="Sprite2D" parent="IngredientSpawners/PastaSpawner" index="0"]
+z_index = 10
+position = Vector2(-1, 5)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 17
+
+[node name="CollisionShape2D" parent="IngredientSpawners/PastaSpawner/Area2D" index="0"]
+position = Vector2(-1, 5.5)
+shape = SubResource("RectangleShape2D_ktohm")
+
+[node name="Sprite2D" parent="IngredientSpawners/PastaSpawner/DraggableIngredient" index="0"]
+z_index = 20
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 15
+
+[node name="SaladSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
+position = Vector2(46, 29)
+ingredient_name = "salad"
+
+[node name="Sprite2D" parent="IngredientSpawners/SaladSpawner" index="0"]
+z_index = 10
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 13
+
+[node name="CollisionShape2D" parent="IngredientSpawners/SaladSpawner/Area2D" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_04k7x")
+
+[node name="Sprite2D" parent="IngredientSpawners/SaladSpawner/DraggableIngredient" index="0"]
+z_index = 20
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 12
+
+[node name="ChickenSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
+position = Vector2(47, 63)
+ingredient_name = "chicken"
+
+[node name="Sprite2D" parent="IngredientSpawners/ChickenSpawner" index="0"]
+z_index = 10
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 2
+
+[node name="CollisionShape2D" parent="IngredientSpawners/ChickenSpawner/Area2D" index="0"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_ru82v")
+
+[node name="Sprite2D" parent="IngredientSpawners/ChickenSpawner/DraggableIngredient" index="0"]
+z_index = 20
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+
+[node name="EggSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
+position = Vector2(183, 64)
+ingredient_name = "egg"
+
+[node name="Sprite2D" parent="IngredientSpawners/EggSpawner" index="0"]
+z_index = 10
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 5
+
+[node name="CollisionShape2D" parent="IngredientSpawners/EggSpawner/Area2D" index="0"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_hv58q")
+
+[node name="Sprite2D" parent="IngredientSpawners/EggSpawner/DraggableIngredient" index="0"]
+z_index = 20
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+texture = ExtResource("9_e8bw1")
+hframes = 3
+vframes = 6
+frame = 3
 
 [node name="WaterContainer" type="Node2D" parent="IngredientSpawners"]
 position = Vector2(210, 151)
@@ -700,9 +873,9 @@ position = Vector2(-1.5, 8.5)
 shape = SubResource("RectangleShape2D_tqybt")
 
 [connection signal="grabbed_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Trashcan" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/BeansPot/Area2D" to="Stove/BeansPot" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/BeansPot/Area2D" to="Stove/BeansPot" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/BeansPot/FireController/KnobSprite/Area2D" to="Stove/BeansPot/FireController" method="_on_area_2d_input_event"]
@@ -713,10 +886,21 @@ shape = SubResource("RectangleShape2D_tqybt")
 [connection signal="mouse_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/RicePan/FireController/KnobSprite/Area2D" to="Stove/RicePan/FireController" method="_on_area_2d_input_event"]
+[connection signal="grabbed_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Trashcan" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
+[connection signal="mouse_entered" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Stove/PastaPot/FireController/KnobSprite/Area2D" to="Stove/PastaPot/FireController" method="_on_area_2d_input_event"]
 [connection signal="ingredient_released" from="IngredientSpawners/RiceSpawner" to="Stove/RicePan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/BeansSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
-[connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/PastaSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/SaladSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/ChickenSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/EggSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/BeansPot" method="_on_water_container_ingredient_released"]
+[connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
 [connection signal="input_event" from="IngredientSpawners/WaterContainer/GrabArea" to="IngredientSpawners/WaterContainer" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_exited"]
@@ -725,3 +909,7 @@ shape = SubResource("RectangleShape2D_tqybt")
 
 [editable path="IngredientSpawners/RiceSpawner"]
 [editable path="IngredientSpawners/BeansSpawner"]
+[editable path="IngredientSpawners/PastaSpawner"]
+[editable path="IngredientSpawners/SaladSpawner"]
+[editable path="IngredientSpawners/ChickenSpawner"]
+[editable path="IngredientSpawners/EggSpawner"]
