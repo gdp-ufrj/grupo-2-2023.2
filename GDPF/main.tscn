@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=97 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
 [ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://ingredients/ingredient_spawner.tscn" id="3_j3iym"]
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
+[ext_resource type="Script" path="res://FilaDePedidos/FilaDePedidos.gd" id="5_6yh2d"]
 [ext_resource type="Texture2D" uid="uid://ykcirrfkst3p" path="res://stove/fire_knob.png" id="5_o13rw"]
+[ext_resource type="FontFile" uid="uid://um0h3q1v0t1n" path="res://Fonts/Keychain.otf" id="5_rgw34"]
 [ext_resource type="Texture2D" uid="uid://dr3lwrkar0utf" path="res://stove/fire.png" id="6_02aly"]
 [ext_resource type="Script" path="res://draggable_cooked_ingredient.gd" id="6_voiik"]
-[ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://ingredients/ingredients.png" id="9_e8bw1"]
+[ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://Ingredients/ingredients.png" id="9_e8bw1"]
 [ext_resource type="Script" path="res://pasta_pot/pasta_pot.gd" id="10_3kr8o"]
 [ext_resource type="Script" path="res://LunchBowl.gd" id="11_7wxfa"]
 [ext_resource type="Texture2D" uid="uid://d2f3dcjl8031c" path="res://pasta_pot/pasta_pot.png" id="11_igerw"]
@@ -17,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://frv7w0f4r8d" path="res://lunch_bowl/lunch_bowl_food.png" id="12_h3fyd"]
 [ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
 [ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="13_3co5a"]
-[ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://ingredients/water/water.png" id="13_204wg"]
+[ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://Ingredients/Water/water.png" id="13_204wg"]
 [ext_resource type="Texture2D" uid="uid://d1dpuf0vv5jqp" path="res://protein_pan/protein_pan.png" id="13_gpydv"]
 [ext_resource type="Texture2D" uid="uid://gkle5moxok6m" path="res://trashcan/trashcan.png" id="14_88k3u"]
 [ext_resource type="Script" path="res://trashcan.gd" id="14_ejdbd"]
@@ -1126,6 +1128,67 @@ texture = ExtResource("14_88k3u")
 position = Vector2(-1.5, 8.5)
 shape = SubResource("RectangleShape2D_tqybt")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_6yh2d")
+
+[node name="Pedidos" type="Label" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_top = 15.0
+offset_right = -13.0
+offset_bottom = 116.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("5_rgw34")
+theme_override_font_sizes/font_size = 32
+text = "ARROZ
+FEIJÃO
+FRANGO
+"
+horizontal_alignment = 1
+
+[node name="Timer" type="Node" parent="HUD/Control"]
+
+[node name="MinutesTimer" type="Label" parent="HUD/Control/Timer"]
+offset_left = 14.0
+offset_top = 15.0
+offset_right = 75.0
+offset_bottom = 62.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_rgw34")
+theme_override_font_sizes/font_size = 48
+text = "00:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SecondsTimer" type="Label" parent="HUD/Control/Timer"]
+offset_left = 63.0
+offset_top = 15.0
+offset_right = 124.0
+offset_bottom = 62.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_rgw34")
+theme_override_font_sizes/font_size = 48
+text = "00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [connection signal="grabbed_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
@@ -1141,16 +1204,16 @@ shape = SubResource("RectangleShape2D_tqybt")
 [connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/RicePan/FireController/KnobSprite/Area2D" to="Stove/RicePan/FireController" method="_on_area_2d_input_event"]
 [connection signal="grabbed_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Trashcan" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/PastaPot/FireController/KnobSprite/Area2D" to="Stove/PastaPot/FireController" method="_on_area_2d_input_event"]
 [connection signal="grabbed_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="LunchBowl" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Trashcan" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/ProteinPan/Area2D" to="Stove/ProteinPan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/ProteinPan/Area2D" to="Stove/ProteinPan" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/ProteinPan/FireController/KnobSprite/Area2D" to="Stove/ProteinPan/FireController" method="_on_area_2d_input_event"]
