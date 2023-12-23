@@ -63,6 +63,9 @@ func _on_water_container_ingredient_released(ingredient, drop_area):
 				
 var States = {
 	"EmptyState": {
+		"on_state_enter":
+			func():
+				_audio.stop(),
 		"on_ingredient_added": 
 			func(ingredient): 
 				if(ingredient == "beans"): 
