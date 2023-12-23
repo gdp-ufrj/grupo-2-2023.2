@@ -10,7 +10,7 @@ func _on_ingredient_spawner_ingredient_grabbed():
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func _on_ingredient_spawner_ingredient_released(_ingredient):
+func _on_ingredient_spawner_ingredient_released(_ingredient, _on_released_inside_callback, _on_released_outside_callback):
 	self._sprite.visible = false
 	self.global_position = _initial_position
 	self.process_mode = Node.PROCESS_MODE_DISABLED

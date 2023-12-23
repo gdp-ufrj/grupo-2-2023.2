@@ -1,27 +1,61 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3poo7bdhm2vk"]
+[gd_scene load_steps=9 format=3 uid="uid://c3poo7bdhm2vk"]
+
+[ext_resource type="AudioStream" uid="uid://cl36x87b00lot" path="res://audio/uisfx_object_click.wav" id="1_a7kv7"]
+[ext_resource type="AudioStream" uid="uid://bwydeyitrajxy" path="res://audio/uisfx_object_hover.wav" id="2_y6d4n"]
+[ext_resource type="AudioStream" uid="uid://cdna1ko6ywxay" path="res://audio/uisfx_object_misplace.wav" id="3_86jgv"]
 
 [sub_resource type="GDScript" id="GDScript_qsv2l"]
 script/source = "
 extends Node2D
 
 signal ingredient_grabbed
-signal ingredient_released(ingredient)
+signal ingredient_released(ingredient, released_inside_callback, released_outside_callback)
 
 @export var ingredient_name:String = \"rice\"
+@export var on_click_audio: AudioStream
+@export var on_hover_audio: AudioStream
+@export var released_outside_audio: AudioStream
+@export var released_inside_audio: AudioStream
+
+@onready var _audio = $AudioStreamPlayer2D
+@onready var _controller : IngredientSpawnerController = $\"../\"
 
 var _is_grabbing_ingredient := false
+
+func released_inside_callback():
+	_audio.stream = released_inside_audio
+	_audio.play()
+
+func released_outside_callback():
+	_audio.stream = released_outside_audio
+	_audio.play()
 
 func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_action_pressed(\"left_mouse\"):
 			_is_grabbing_ingredient = true
+			_controller.is_grabbing_any_ingredient = true
+			_audio.stream = on_click_audio
+			_audio.play()
 			ingredient_grabbed.emit()
 	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_released(\"left_mouse\") and _is_grabbing_ingredient:
-			ingredient_released.emit(ingredient_name)
+			ingredient_released.emit(ingredient_name, released_inside_callback, released_outside_callback)
 			_is_grabbing_ingredient = false
+			_controller.is_grabbing_any_ingredient = false
+
+
+func _on_area_2d_mouse_entered():
+	if not _controller.is_grabbing_any_ingredient:
+		_audio.stream = on_hover_audio
+		_audio.play()
+		self.scale = Vector2(1.1, 1.1)
+
+
+func _on_area_2d_mouse_exited():
+	self.scale = Vector2.ONE
 "
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pndg0"]
@@ -42,7 +76,7 @@ func _on_ingredient_spawner_ingredient_grabbed():
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func _on_ingredient_spawner_ingredient_released(_ingredient):
+func _on_ingredient_spawner_ingredient_released(_ingredient, _released_inside_callback, _released_outside_callback):
 	self._sprite.visible = false
 	self.global_position = _initial_position
 	self.process_mode = Node.PROCESS_MODE_DISABLED
@@ -61,6 +95,9 @@ load_path = "res://.godot/imported/egg_draggable.png-60a08386e42fbd9ac50c2a5a484
 [node name="IngredientSpawner" type="Node2D"]
 position = Vector2(582, 291)
 script = SubResource("GDScript_qsv2l")
+on_click_audio = ExtResource("1_a7kv7")
+on_hover_audio = ExtResource("2_y6d4n")
+released_outside_audio = ExtResource("3_86jgv")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -82,6 +119,10 @@ position = Vector2(-2, 4)
 scale = Vector2(0.046, 0.046)
 texture = SubResource("CompressedTexture2D_8geij")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="ingredient_grabbed" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_grabbed"]
 [connection signal="ingredient_released" from="." to="DraggableIngredient" method="_on_ingredient_spawner_ingredient_released"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -7,6 +7,7 @@ signal ingredient_released(ingredient, drop_area)
 @export var ingredient_name:String = "water"
 @onready var _animator: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _drop_area: Area2D = $DropArea
+@onready var _audio = $AudioStreamPlayer2D
 @onready var _initial_position = self.global_position
 
 
@@ -41,5 +42,6 @@ func _input(event):
 			_current_state = STATES.Dropping
 			self._animator.play("released")
 			self._animator.animation_finished.connect(_on_water_released_animation_finished)
+			_audio.play()
 			ingredient_released.emit(ingredient_name, _drop_area)
 			

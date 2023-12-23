@@ -4,21 +4,35 @@ class_name FireController
 signal fire_turned_on
 signal fire_turned_off
 
+@export var fire_turned_on_audio : AudioStream
+@export var fire_turned_off_audio : AudioStream
+@export var _on_cooking_pot_audio_loop : AudioStream
+@export var _on_cooking_pan_audio_loop : AudioStream
+
 var state_is_on:bool = false
 
 @onready var knobSprite = $KnobSprite
 @onready var fireSprite = $FireSprite
 
+@onready var _audio := $AudioStreamPlayer2D
+@onready var _pan := $"../"
+@onready var _pan_audio := $"../AudioStreamPlayer2D"
+
 func _on_fire_turned_on():
 	state_is_on = true
 	knobSprite.play("on")
 	fireSprite.play("fire_loop")
+	_audio.stream = fire_turned_on_audio
+	_audio.play()
 
 
 func _on_fire_turned_off():
 	state_is_on = false
 	knobSprite.play("off")
 	fireSprite.play("fire_off")
+	_audio.stream = fire_turned_off_audio
+	_audio.play()
+	_pan_audio.stop()
 
 
 func _ready():

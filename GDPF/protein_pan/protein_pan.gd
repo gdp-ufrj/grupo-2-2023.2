@@ -9,7 +9,12 @@ signal released_cooked_ingredient(ingredient, decrease_ingredient)
 @export var pan_name: String = "protein_pan"
 @export var serving_amount: int = 1
 
+@export var _on_cooking_start_audio : AudioStream
+@export var _on_overcooked_audio : AudioStream
+@export var _on_cooking_audio_loop : AudioStream
+
 @onready var area2d: Area2D = $Area2D
+@onready var _audio := $AudioStreamPlayer2D
 @onready var _pan : ProteinPan = self
 @onready var _animator: AnimatedSprite2D = _pan.get_node("AnimatedSprite2D")
 @onready var _fire_controller: FireController = _pan.get_node("FireController")
@@ -21,9 +26,12 @@ var _is_grabbing_ingredient = false
 var _currently_grabbed_ingredient = null
 var _ingredient_count = 0
 
-func _on_ingredient_released(ingredient):
+func _on_ingredient_released(ingredient, released_inside_callback, released_outside_callback):
 	if (_is_mouse_inside_pan):
 		ingredient_released_on_pan.emit(ingredient)
+		released_inside_callback.call()
+	else:
+		released_outside_callback.call()
 
 func decrease_ingredient():
 	_ingredient_count -= 1
@@ -34,10 +42,11 @@ func _input(event):
 			if _current_state_name == "CookedChickenState":
 				_currently_grabbed_ingredient = "cooked_chicken"
 				grabbed_cooked_ingredient.emit(_currently_grabbed_ingredient)
+				_is_grabbing_ingredient = true
 			if _current_state_name == "CookedEggState":
 				_currently_grabbed_ingredient = "cooked_egg"
 				grabbed_cooked_ingredient.emit(_currently_grabbed_ingredient)
-			_is_grabbing_ingredient = true
+				_is_grabbing_ingredient = true
 		if event.is_action_released("left_mouse") and _is_grabbing_ingredient:
 			released_cooked_ingredient.emit(_currently_grabbed_ingredient, decrease_ingredient)
 			_is_grabbing_ingredient = false
@@ -71,6 +80,8 @@ var States = {
 		"on_state_enter":
 			func():
 				if(_fire_controller.state_is_on):
+					_audio.stream = _on_cooking_audio_loop
+					_audio.play()
 					_switch_to_state("CookingEggState"),
 		"on_fire_start":
 			func():
@@ -80,6 +91,8 @@ var States = {
 		"on_state_enter":
 			func():
 				if(_fire_controller.state_is_on):
+					_audio.stream = _on_cooking_audio_loop
+					_audio.play()
 					_switch_to_state("CookingChickenState"),
 		"on_fire_start":
 			func():
@@ -87,6 +100,11 @@ var States = {
 	},
 	"CookingEggState": {
 		"timer_wait": 3,
+		"on_state_enter":
+			func():
+				if(_fire_controller.state_is_on):
+					_audio.stream = _on_cooking_audio_loop
+					_audio.play(),
 		"on_fire_stop":
 			func():
 				_switch_to_state("EggState"),
@@ -96,6 +114,11 @@ var States = {
 	},
 	"CookingChickenState": {
 		"timer_wait": 5,
+		"on_state_enter":
+			func():
+				if(_fire_controller.state_is_on):
+					_audio.stream = _on_cooking_audio_loop
+					_audio.play(),
 		"on_fire_stop":
 			func():
 				_switch_to_state("ChickenState"),
@@ -113,9 +136,12 @@ var States = {
 				_switch_to_state("OvercookedEggState"),
 		"on_fire_stop":
 			func():
+				_audio.stop()
 				_timer.stop(),
 		"on_fire_start":
 			func():
+				_audio.stream = _on_cooking_audio_loop
+				_audio.play()
 				_timer.start(),
 	},
 	"CookedChickenState": {
@@ -128,13 +154,20 @@ var States = {
 				_switch_to_state("OvercookedChickenState"),
 		"on_fire_stop":
 			func():
+				_audio.stop()
 				_timer.stop(),
 		"on_fire_start":
 			func():
+				_audio.stream = _on_cooking_audio_loop
+				_audio.play()
 				_timer.start(),
 	},
 	"OvercookedEggState": {
 		"timer_wait": 5,
+		"on_state_enter":
+			func():
+				_audio.stream = _on_overcooked_audio
+				_audio.play(),
 		"on_timer_timeout":
 			func():
 				_switch_to_state("EmptyState")
@@ -142,6 +175,10 @@ var States = {
 	},
 	"OvercookedChickenState": {
 		"timer_wait": 5,
+		"on_state_enter":
+			func():
+				_audio.stream = _on_overcooked_audio
+				_audio.play(),
 		"on_timer_timeout":
 			func():
 				_switch_to_state("EmptyState")
@@ -182,5 +219,7 @@ func _switch_to_state(next_state_name):
 		_fire_controller.fire_turned_off.connect(next_state.get("on_fire_stop"))
 	
 	_current_state_name = next_state_name
+	if(current_state.get("on_state_exit")):
+		current_state.get("on_state_exit").call()
 	if(next_state.get("on_state_enter")):
 		next_state.get("on_state_enter").call()

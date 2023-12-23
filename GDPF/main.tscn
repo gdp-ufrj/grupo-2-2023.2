@@ -1,14 +1,16 @@
-[gd_scene load_steps=97 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=116 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
 [ext_resource type="Texture2D" uid="uid://btanrns7dlcuf" path="res://beans_pot/beans_pot.png" id="2_2yt8f"]
+[ext_resource type="AudioStream" uid="uid://chi8pp80eb57" path="res://audio/sfx_pan_cook.wav" id="2_hxljk"]
 [ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
-[ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://ingredients/ingredient_spawner.tscn" id="3_j3iym"]
+[ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://Ingredients/ingredient_spawner.tscn" id="3_j3iym"]
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
-[ext_resource type="Script" path="res://FilaDePedidos/FilaDePedidos.gd" id="5_6yh2d"]
+[ext_resource type="AudioStream" uid="uid://c84kppl4304ki" path="res://audio/sfx_stove_on.wav" id="4_shgnc"]
 [ext_resource type="Texture2D" uid="uid://ykcirrfkst3p" path="res://stove/fire_knob.png" id="5_o13rw"]
 [ext_resource type="FontFile" uid="uid://um0h3q1v0t1n" path="res://Fonts/Keychain.otf" id="5_rgw34"]
+[ext_resource type="AudioStream" uid="uid://bbpm6it0r67w0" path="res://audio/sfx_stove_off.wav" id="5_xnkva"]
 [ext_resource type="Texture2D" uid="uid://dr3lwrkar0utf" path="res://stove/fire.png" id="6_02aly"]
 [ext_resource type="Script" path="res://draggable_cooked_ingredient.gd" id="6_voiik"]
 [ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://Ingredients/ingredients.png" id="9_e8bw1"]
@@ -23,6 +25,17 @@
 [ext_resource type="Texture2D" uid="uid://d1dpuf0vv5jqp" path="res://protein_pan/protein_pan.png" id="13_gpydv"]
 [ext_resource type="Texture2D" uid="uid://gkle5moxok6m" path="res://trashcan/trashcan.png" id="14_88k3u"]
 [ext_resource type="Script" path="res://trashcan.gd" id="14_ejdbd"]
+[ext_resource type="Script" path="res://IngredientSpawners.gd" id="14_ix53w"]
+[ext_resource type="AudioStream" uid="uid://c47b5iwqhblgp" path="res://audio/sfx_pan_click.wav" id="15_vwe1y"]
+[ext_resource type="AudioStream" uid="uid://k1to7cmshtv2" path="res://audio/sfx_pan_fry.wav" id="16_4mtmj"]
+[ext_resource type="AudioStream" uid="uid://cg1cs2a7uoeew" path="res://audio/sfx_pan_drainout.wav" id="17_03yrf"]
+[ext_resource type="AudioStream" uid="uid://nagm1vn4ine" path="res://audio/sfx_watercontainer_release.wav" id="17_qgytk"]
+[ext_resource type="Script" path="res://order_queue/order_queue.gd" id="22_y6jes"]
+[ext_resource type="Script" path="res://order.gd" id="23_8ba8u"]
+[ext_resource type="Texture2D" uid="uid://byy6hiu5mug1k" path="res://order_queue/message_balloon.png" id="23_jdigt"]
+[ext_resource type="AudioStream" uid="uid://ddd3pcfuo85kt" path="res://audio/sfx_open_bin.wav" id="23_yw5ka"]
+[ext_resource type="AudioStream" uid="uid://0myfy4yr6dlq" path="res://audio/sfx_throw_bin.wav" id="24_k866n"]
+[ext_resource type="Texture2D" uid="uid://c2co7e7oij4fu" path="res://common/ingredient_atlas.tres" id="25_m7bvp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvjb6"]
 atlas = ExtResource("2_2yt8f")
@@ -455,13 +468,13 @@ region = Rect2(81, 0, 81, 64)
 atlas = ExtResource("13_gpydv")
 region = Rect2(0, 0, 81, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7sxg2"]
-atlas = ExtResource("13_gpydv")
-region = Rect2(243, 0, 81, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6hyh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_51ya5"]
 atlas = ExtResource("13_gpydv")
 region = Rect2(486, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6yjn"]
+atlas = ExtResource("13_gpydv")
+region = Rect2(243, 0, 81, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqgmv"]
 animations = [{
@@ -523,7 +536,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7sxg2")
+"texture": SubResource("AtlasTexture_51ya5")
 }],
 "loop": true,
 "name": &"OvercookedChickenState",
@@ -531,7 +544,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b6hyh")
+"texture": SubResource("AtlasTexture_q6yjn")
 }],
 "loop": true,
 "name": &"OvercookedEggState",
@@ -644,6 +657,34 @@ size = Vector2(37, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqybt"]
 size = Vector2(85, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nreix"]
+atlas = ExtResource("9_e8bw1")
+region = Rect2(64, 0, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkmyj"]
+atlas = ExtResource("9_e8bw1")
+region = Rect2(64, 192, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se62r"]
+atlas = ExtResource("9_e8bw1")
+region = Rect2(64, 128, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jav2u"]
+atlas = ExtResource("9_e8bw1")
+region = Rect2(64, 320, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0rs4"]
+atlas = ExtResource("9_e8bw1")
+region = Rect2(0, 256, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qauwx"]
+size = Vector2(101, 33)
+
 [node name="Kitchen" type="Node"]
 
 [node name="Stove" type="Node" parent="."]
@@ -651,6 +692,8 @@ size = Vector2(85, 37)
 [node name="BeansPot" type="Node2D" parent="Stove"]
 position = Vector2(127, 103)
 script = ExtResource("1_n5ygu")
+_on_cooking_audio_loop = ExtResource("2_hxljk")
+_on_overcooked_audio = ExtResource("17_03yrf")
 metadata/_edit_group_ = true
 
 [node name="Timer" type="Timer" parent="Stove/BeansPot"]
@@ -671,6 +714,10 @@ shape = SubResource("RectangleShape2D_o6wpb")
 [node name="FireController" type="Node2D" parent="Stove/BeansPot"]
 position = Vector2(23, 60)
 script = ExtResource("4_i2gv8")
+fire_turned_on_audio = ExtResource("4_shgnc")
+fire_turned_off_audio = ExtResource("5_xnkva")
+_on_cooking_pot_audio_loop = ExtResource("2_hxljk")
+_on_cooking_pan_audio_loop = ExtResource("16_4mtmj")
 metadata/_edit_group_ = true
 
 [node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/BeansPot/FireController"]
@@ -691,6 +738,10 @@ animation = &"fire_loop"
 autoplay = "fire_off"
 speed_scale = 2.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/BeansPot/FireController"]
+volume_db = -15.0
+pitch_scale = 2.0
+
 [node name="DraggableCookedIngredient" type="Node2D" parent="Stove/BeansPot"]
 process_mode = 4
 script = ExtResource("6_voiik")
@@ -704,9 +755,13 @@ hframes = 3
 vframes = 6
 frame = 7
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/BeansPot"]
+
 [node name="RicePan" type="Node2D" parent="Stove"]
 position = Vector2(47, 103)
 script = ExtResource("1_jx7bk")
+_on_cooking_audio_loop = ExtResource("2_hxljk")
+_on_overcooked_audio = ExtResource("17_03yrf")
 metadata/_edit_group_ = true
 
 [node name="Timer" type="Timer" parent="Stove/RicePan"]
@@ -728,6 +783,10 @@ shape = SubResource("RectangleShape2D_o6wpb")
 [node name="FireController" type="Node2D" parent="Stove/RicePan"]
 position = Vector2(-16, 60)
 script = ExtResource("4_i2gv8")
+fire_turned_on_audio = ExtResource("4_shgnc")
+fire_turned_off_audio = ExtResource("5_xnkva")
+_on_cooking_pot_audio_loop = ExtResource("2_hxljk")
+_on_cooking_pan_audio_loop = ExtResource("16_4mtmj")
 metadata/_edit_group_ = true
 
 [node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/RicePan/FireController"]
@@ -748,6 +807,10 @@ animation = &"fire_loop"
 autoplay = "fire_off"
 speed_scale = 2.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/RicePan/FireController"]
+volume_db = -15.0
+pitch_scale = 2.0
+
 [node name="DraggableCookedIngredient" type="Node2D" parent="Stove/RicePan"]
 process_mode = 4
 script = ExtResource("6_voiik")
@@ -761,9 +824,13 @@ hframes = 3
 vframes = 6
 frame = 10
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/RicePan"]
+
 [node name="PastaPot" type="Node2D" parent="Stove"]
 position = Vector2(47, 157)
 script = ExtResource("10_3kr8o")
+_on_cooking_audio_loop = ExtResource("2_hxljk")
+_on_overcooked_audio = ExtResource("17_03yrf")
 metadata/_edit_group_ = true
 
 [node name="Timer" type="Timer" parent="Stove/PastaPot"]
@@ -785,6 +852,10 @@ shape = SubResource("RectangleShape2D_o6wpb")
 [node name="FireController" type="Node2D" parent="Stove/PastaPot"]
 position = Vector2(7, 0)
 script = ExtResource("4_i2gv8")
+fire_turned_on_audio = ExtResource("4_shgnc")
+fire_turned_off_audio = ExtResource("5_xnkva")
+_on_cooking_pot_audio_loop = ExtResource("2_hxljk")
+_on_cooking_pan_audio_loop = ExtResource("16_4mtmj")
 metadata/_edit_group_ = true
 
 [node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/PastaPot/FireController"]
@@ -805,6 +876,10 @@ animation = &"fire_loop"
 autoplay = "fire_off"
 speed_scale = 2.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/PastaPot/FireController"]
+volume_db = -15.0
+pitch_scale = 2.0
+
 [node name="DraggableCookedIngredient" type="Node2D" parent="Stove/PastaPot"]
 process_mode = 4
 script = ExtResource("6_voiik")
@@ -818,9 +893,14 @@ hframes = 3
 vframes = 6
 frame = 16
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/PastaPot"]
+
 [node name="ProteinPan" type="Node2D" parent="Stove"]
 position = Vector2(138, 164)
 script = ExtResource("12_6l88t")
+_on_cooking_start_audio = ExtResource("15_vwe1y")
+_on_overcooked_audio = ExtResource("15_vwe1y")
+_on_cooking_audio_loop = ExtResource("16_4mtmj")
 metadata/_edit_group_ = true
 
 [node name="Timer" type="Timer" parent="Stove/ProteinPan"]
@@ -842,6 +922,10 @@ shape = SubResource("RectangleShape2D_utqdk")
 [node name="FireController" type="Node2D" parent="Stove/ProteinPan"]
 position = Vector2(-11, -7)
 script = ExtResource("4_i2gv8")
+fire_turned_on_audio = ExtResource("4_shgnc")
+fire_turned_off_audio = ExtResource("5_xnkva")
+_on_cooking_pot_audio_loop = ExtResource("2_hxljk")
+_on_cooking_pan_audio_loop = ExtResource("16_4mtmj")
 metadata/_edit_group_ = true
 
 [node name="KnobSprite" type="AnimatedSprite2D" parent="Stove/ProteinPan/FireController"]
@@ -862,6 +946,10 @@ animation = &"fire_loop"
 autoplay = "fire_off"
 speed_scale = 2.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/ProteinPan/FireController"]
+volume_db = -15.0
+pitch_scale = 2.0
+
 [node name="DraggableCookedIngredient" type="Node2D" parent="Stove/ProteinPan"]
 process_mode = 4
 script = ExtResource("6_voiik")
@@ -875,7 +963,10 @@ hframes = 3
 vframes = 6
 frame = 4
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Stove/ProteinPan"]
+
 [node name="IngredientSpawners" type="Node" parent="."]
+script = ExtResource("14_ix53w")
 
 [node name="RiceSpawner" parent="IngredientSpawners" instance=ExtResource("3_j3iym")]
 position = Vector2(150, 27)
@@ -1044,6 +1135,10 @@ shape = SubResource("RectangleShape2D_svjwd")
 position = Vector2(-22.5, 1)
 shape = SubResource("RectangleShape2D_dpxlt")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="IngredientSpawners/WaterContainer"]
+stream = ExtResource("17_qgytk")
+bus = &"SFX"
+
 [node name="LunchBowl" type="Node2D" parent="."]
 position = Vector2(223, 154)
 script = ExtResource("11_7wxfa")
@@ -1118,6 +1213,8 @@ metadata/_edit_lock_ = true
 [node name="Trashcan" type="Node2D" parent="."]
 position = Vector2(261, 213)
 script = ExtResource("14_ejdbd")
+_on_hover_audio = ExtResource("23_yw5ka")
+_on_drop_inside_audio = ExtResource("24_k866n")
 
 [node name="TrashcanSprite" type="Sprite2D" parent="Trashcan"]
 texture = ExtResource("14_88k3u")
@@ -1127,6 +1224,10 @@ texture = ExtResource("14_88k3u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trashcan/Area2D"]
 position = Vector2(-1.5, 8.5)
 shape = SubResource("RectangleShape2D_tqybt")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Trashcan"]
+volume_db = -10.0
+pitch_scale = 3.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -1138,9 +1239,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("5_6yh2d")
+script = ExtResource("22_y6jes")
+
+[node name="Order" type="Control" parent="HUD/Control"]
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 2.0
+offset_right = 280.0
+offset_bottom = 42.0
+script = ExtResource("23_8ba8u")
+
+[node name="MessageBalloon" type="TextureRect" parent="HUD/Control/Order"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -5.0
+offset_right = 183.0
+offset_bottom = 60.0
+texture = ExtResource("23_jdigt")
+
+[node name="Ingredients" type="Control" parent="HUD/Control/Order/MessageBalloon"]
+anchors_preset = 0
+offset_left = 46.0
+offset_top = 19.0
+offset_right = 86.0
+offset_bottom = 59.0
+
+[node name="cooked_egg" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = 23.0
+offset_bottom = 74.0
+texture = ExtResource("25_m7bvp")
+expand_mode = 3
+
+[node name="cooked_chicken" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
+layout_mode = 2
+offset_top = 1.0
+offset_right = 24.0
+offset_bottom = 65.0
+texture = SubResource("AtlasTexture_nreix")
+expand_mode = 3
+
+[node name="cooked_rice" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = -1.0
+offset_right = 44.0
+offset_bottom = 63.0
+texture = SubResource("AtlasTexture_mkmyj")
+expand_mode = 3
+
+[node name="cooked_beans" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 10.0
+offset_right = 64.0
+offset_bottom = 74.0
+texture = SubResource("AtlasTexture_se62r")
+expand_mode = 3
+
+[node name="cooked_pasta" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 9.0
+offset_right = 47.0
+offset_bottom = 73.0
+texture = SubResource("AtlasTexture_jav2u")
+expand_mode = 3
+
+[node name="salad" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
+layout_mode = 2
+offset_left = 39.0
+offset_top = -1.0
+offset_right = 63.0
+offset_bottom = 63.0
+texture = SubResource("AtlasTexture_a0rs4")
+expand_mode = 3
+
+[node name="Area2D" type="Area2D" parent="HUD/Control/Order/MessageBalloon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HUD/Control/Order/MessageBalloon/Area2D"]
+position = Vector2(66.5, 34.5)
+shape = SubResource("RectangleShape2D_qauwx")
 
 [node name="Pedidos" type="Label" parent="HUD/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1161,9 +1345,9 @@ FRANGO
 "
 horizontal_alignment = 1
 
-[node name="Timer" type="Node" parent="HUD/Control"]
-
-[node name="MinutesTimer" type="Label" parent="HUD/Control/Timer"]
+[node name="MinutesTimer" type="Label" parent="HUD/Control"]
+visible = false
+layout_mode = 0
 offset_left = 14.0
 offset_top = 15.0
 offset_right = 75.0
@@ -1176,7 +1360,9 @@ text = "00:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SecondsTimer" type="Label" parent="HUD/Control/Timer"]
+[node name="SecondsTimer" type="Label" parent="HUD/Control"]
+visible = false
+layout_mode = 0
 offset_left = 63.0
 offset_top = 15.0
 offset_right = 124.0
