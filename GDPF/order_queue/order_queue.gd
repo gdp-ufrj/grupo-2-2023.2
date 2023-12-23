@@ -6,20 +6,28 @@ extends Control
 @onready var _orders = $Orders
 @onready var _timer = $Timer
 
+const MAX_INT = 9223372036854775807
+
 var order_scene = preload("res://order_queue/order.tscn")
 
 const mode = {
+	"tutorial" = {
+		"min_ingredient_amount" = 2,
+		"max_ingredient_amount" = 2,
+		"min_wait_time" = MAX_INT,
+		"max_wait_time" = MAX_INT
+	},
 	"easy" = {
 		"min_ingredient_amount" = 2,
 		"max_ingredient_amount" = 3,
-		"min_wait_time" = 25,
-		"max_wait_time" = 40
+		"min_wait_time" = 20,
+		"max_wait_time" = 30
 	},
 	"medium" = {
 		"min_ingredient_amount" = 3,
 		"max_ingredient_amount" = 6,
-		"min_wait_time" = 20,
-		"max_wait_time" = 30
+		"min_wait_time" = 15,
+		"max_wait_time" = 20
 	},
 	"hard" = {
 		"min_ingredient_amount" = 4,
@@ -29,7 +37,7 @@ const mode = {
 	}
 }
 
-var _current_difficulty = "easy"
+var _current_difficulty = "tutorial"
 
 func _ready():
 	_timer.wait_time = initial_wait_time
@@ -49,6 +57,17 @@ func _new_order():
 func _on_timer_timeout():
 	if _orders.get_children().size() <= max_orders_amount:
 		_new_order()
+		
+func _on_score_changed(new_score):
+	print(_timer.wait_time)
+	print(_current_difficulty)
+	if _current_difficulty == "tutorial" and new_score > 0 and new_score < 75:
+		_current_difficulty = "easy"
+		_new_order()
+	elif _current_difficulty == "easy" and new_score > 75 and new_score < 300:
+		_current_difficulty = "medium"
+	elif _current_difficulty == "medium" and new_score > 300:
+		_current_difficulty = "hard"
 #
 #@onready var pedidosText := $Pedidos
 #@onready var minutesText := $MinutesTimer

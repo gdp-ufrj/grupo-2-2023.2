@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=110 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
@@ -33,8 +33,10 @@
 [ext_resource type="AudioStream" uid="uid://0myfy4yr6dlq" path="res://audio/sfx_throw_bin.wav" id="24_k866n"]
 [ext_resource type="PackedScene" uid="uid://pd7yq40np5lh" path="res://lunch_bowl/lunch_bowl.tscn" id="25_qop25"]
 [ext_resource type="AudioStream" uid="uid://dw8el2y4mp7hv" path="res://audio/music_main_loop.wav" id="35_3eefc"]
+[ext_resource type="FontFile" uid="uid://dfae4tjwcrksg" path="res://Fonts/DisposableDroidBB.ttf" id="35_ha27c"]
 [ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://order_queue/phone.png" id="35_v6hgm"]
 [ext_resource type="Texture2D" uid="uid://dhfyvkr5qeor0" path="res://order_queue/notification.png" id="36_2xdfw"]
+[ext_resource type="Script" path="res://ScoreController.gd" id="36_hisnh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvjb6"]
 atlas = ExtResource("2_2yt8f")
@@ -1139,27 +1141,6 @@ pitch_scale = 3.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Pedidos" type="Label" parent="HUD"]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -104.0
-offset_top = 15.0
-offset_right = -13.0
-offset_bottom = 135.0
-grow_horizontal = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_constants/line_spacing = 10
-theme_override_fonts/font = ExtResource("5_rgw34")
-theme_override_font_sizes/font_size = 32
-text = "ARROZ
-FEIJÃO
-FRANGO
-"
-horizontal_alignment = 1
-
 [node name="MinutesTimer" type="Label" parent="HUD"]
 visible = false
 offset_left = 14.0
@@ -1210,29 +1191,59 @@ offset_bottom = 193.06
 grow_horizontal = 0
 alignment = 2
 
-[node name="Phone" type="TextureRect" parent="HUD/OrderControl"]
-layout_mode = 0
-offset_left = -107.0
-offset_top = 186.0
-offset_right = -1.0
-offset_bottom = 314.0
-texture = ExtResource("35_v6hgm")
-
-[node name="Notification" type="TextureRect" parent="HUD/OrderControl/Phone"]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 31.0
-offset_right = 182.0
-offset_bottom = 159.0
-scale = Vector2(0.200005, 0.200005)
-texture = ExtResource("36_2xdfw")
-
 [node name="Timer" type="Timer" parent="HUD/OrderControl"]
 wait_time = 3.0
+
+[node name="PhoneControl" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="Phone" type="TextureRect" parent="HUD/PhoneControl"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 188.0
+offset_right = 426.0
+offset_bottom = 316.0
+texture = ExtResource("35_v6hgm")
+
+[node name="Notification" type="TextureRect" parent="HUD/PhoneControl/Phone"]
+visible = false
+layout_mode = 0
+offset_left = 65.0
+offset_top = 23.0
+offset_right = 171.0
+offset_bottom = 151.0
+scale = Vector2(0.280005, 0.160005)
+texture = ExtResource("36_2xdfw")
+
+[node name="ScoreLabel" type="Label" parent="HUD/PhoneControl"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 291.0
+offset_top = 210.0
+offset_right = 375.0
+offset_bottom = 236.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.167969, 0.304688, 0.582031, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("35_ha27c")
+theme_override_font_sizes/font_size = 14
+text = "R$ 0,00"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("35_3eefc")
 autoplay = true
+
+[node name="ScoreController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("36_hisnh")
 
 [connection signal="grabbed_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
@@ -1282,6 +1293,7 @@ autoplay = true
 [connection signal="mouse_entered" from="Trashcan/Area2D" to="Trashcan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Trashcan/Area2D" to="Trashcan" method="_on_area_2d_mouse_exited"]
 [connection signal="timeout" from="HUD/OrderControl/Timer" to="HUD/OrderControl" method="_on_timer_timeout"]
+[connection signal="score_changed" from="ScoreController" to="HUD/OrderControl" method="_on_score_changed"]
 
 [editable path="IngredientSpawners/RiceSpawner"]
 [editable path="IngredientSpawners/BeansSpawner"]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://um0h3q1v0t1n"
-path="res://.godot/imported/Keychain.otf-0027f3240235f7265a2d5c4374b67804.fontdata"
+uid="uid://dfae4tjwcrksg"
+path="res://.godot/imported/DisposableDroidBB.ttf-42ed549b48484e7697b30597cb74f438.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Keychain.otf"
-dest_files=["res://.godot/imported/Keychain.otf-0027f3240235f7265a2d5c4374b67804.fontdata"]
+source_file="res://Fonts/DisposableDroidBB.ttf"
+dest_files=["res://.godot/imported/DisposableDroidBB.ttf-42ed549b48484e7697b30597cb74f438.fontdata"]
 
 [params]
 
@@ -20,7 +20,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=1
+hinting=2
 subpixel_positioning=1
 oversampling=4.0
 Fallbacks=null

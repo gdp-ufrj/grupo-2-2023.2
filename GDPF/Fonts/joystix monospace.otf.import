@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://um0h3q1v0t1n"
-path="res://.godot/imported/Keychain.otf-0027f3240235f7265a2d5c4374b67804.fontdata"
+uid="uid://crxqrt5c2jrp3"
+path="res://.godot/imported/joystix monospace.otf-738f2841340ed646f1c41f1335483b2b.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Keychain.otf"
-dest_files=["res://.godot/imported/Keychain.otf-0027f3240235f7265a2d5c4374b67804.fontdata"]
+source_file="res://Fonts/joystix monospace.otf"
+dest_files=["res://.godot/imported/joystix monospace.otf-738f2841340ed646f1c41f1335483b2b.fontdata"]
 
 [params]
 

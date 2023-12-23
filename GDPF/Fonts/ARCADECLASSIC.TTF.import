@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://um0h3q1v0t1n"
-path="res://.godot/imported/Keychain.otf-0027f3240235f7265a2d5c4374b67804.fontdata"
+uid="uid://b8sowwh052wx5"
+path="res://.godot/imported/ARCADECLASSIC.TTF-bc5778a1c5b0e5c73c86f0f07b0a60e7.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Keychain.otf"
-dest_files=["res://.godot/imported/Keychain.otf-0027f3240235f7265a2d5c4374b67804.fontdata"]
+source_file="res://Fonts/ARCADECLASSIC.TTF"
+dest_files=["res://.godot/imported/ARCADECLASSIC.TTF-bc5778a1c5b0e5c73c86f0f07b0a60e7.fontdata"]
 
 [params]
 

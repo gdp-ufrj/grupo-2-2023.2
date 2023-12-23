@@ -21,10 +21,8 @@ var current_ingredients : Array[String] = []
 var _is_being_grabbed = false
 
 func _drop_inside_callback():
-	print("Calling callback")
 	self.reparent(_initial_parent)
 	for ingredient in self.current_ingredients:
-		print(_sprites.get_node(ingredient))
 		_sprites.get_node(ingredient).visible = false
 	self.current_ingredients = []
 
