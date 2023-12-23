@@ -1,0 +1,188 @@
+[gd_scene load_steps=20 format=3 uid="uid://ckhdrit3mtl2x"]
+
+[ext_resource type="Texture2D" uid="uid://byy6hiu5mug1k" path="res://order_queue/message_balloon.png" id="1_bf721"]
+[ext_resource type="Script" path="res://order.gd" id="2_nk18p"]
+[ext_resource type="Texture2D" uid="uid://c1w26rgoauks4" path="res://order_queue/message_balloon-sheet.png" id="3_4u31d"]
+[ext_resource type="Texture2D" uid="uid://c2co7e7oij4fu" path="res://common/ingredient_atlas.tres" id="4_8w85h"]
+[ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://Ingredients/ingredients.png" id="5_gun7u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6y5n"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 192, 122, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itw1q"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 224, 122, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1gu1"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 32, 122, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wki77"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 64, 122, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1aspg"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 160, 122, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5htkk"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 96, 122, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugwqm"]
+atlas = ExtResource("3_4u31d")
+region = Rect2(0, 128, 122, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0bhm2"]
+animations = [{
+"frames": [{
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_n6y5n")
+}, {
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_itw1q")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1gu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wki77")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1aspg")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5htkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugwqm")
+}],
+"loop": true,
+"name": &"satisfied",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nreix"]
+atlas = ExtResource("5_gun7u")
+region = Rect2(64, 0, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkmyj"]
+atlas = ExtResource("5_gun7u")
+region = Rect2(64, 192, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se62r"]
+atlas = ExtResource("5_gun7u")
+region = Rect2(64, 128, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jav2u"]
+atlas = ExtResource("5_gun7u")
+region = Rect2(64, 320, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0rs4"]
+atlas = ExtResource("5_gun7u")
+region = Rect2(0, 256, 64, 64)
+margin = Rect2(-20, -20, -40, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qauwx"]
+size = Vector2(123, 31)
+
+[node name="Order" type="TextureRect"]
+size_flags_horizontal = 8
+texture = ExtResource("1_bf721")
+script = ExtResource("2_nk18p")
+
+[node name="OrderBalloon" type="AnimatedSprite2D" parent="."]
+position = Vector2(61, 16)
+sprite_frames = SubResource("SpriteFrames_0bhm2")
+animation = &"happy"
+frame_progress = 0.817016
+
+[node name="Ingredients" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 44.0
+offset_top = -1.0
+offset_right = 84.0
+offset_bottom = 39.0
+
+[node name="cooked_egg" type="TextureRect" parent="Ingredients"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 12.0
+offset_right = 13.0
+offset_bottom = 76.0
+texture = ExtResource("4_8w85h")
+expand_mode = 3
+
+[node name="cooked_chicken" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+offset_left = -10.0
+offset_top = 1.0
+offset_right = 14.0
+offset_bottom = 65.0
+texture = SubResource("AtlasTexture_nreix")
+expand_mode = 3
+
+[node name="cooked_rice" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+offset_left = 14.0
+offset_right = 38.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_mkmyj")
+expand_mode = 3
+
+[node name="cooked_beans" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 12.0
+offset_right = 64.0
+offset_bottom = 76.0
+texture = SubResource("AtlasTexture_se62r")
+expand_mode = 3
+
+[node name="cooked_pasta" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 74.0
+texture = SubResource("AtlasTexture_jav2u")
+expand_mode = 3
+
+[node name="salad" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+offset_left = 36.0
+offset_top = -1.0
+offset_right = 60.0
+offset_bottom = 63.0
+texture = SubResource("AtlasTexture_a0rs4")
+expand_mode = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(63.5, 36.5)
+shape = SubResource("RectangleShape2D_qauwx")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

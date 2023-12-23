@@ -43,6 +43,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_released(\"left_mouse\") and _is_grabbing_ingredient:
 			ingredient_released.emit(ingredient_name, released_inside_callback, released_outside_callback)
+			
 			_is_grabbing_ingredient = false
 			_controller.is_grabbing_any_ingredient = false
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=108 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
@@ -15,10 +15,8 @@
 [ext_resource type="Script" path="res://draggable_cooked_ingredient.gd" id="6_voiik"]
 [ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://Ingredients/ingredients.png" id="9_e8bw1"]
 [ext_resource type="Script" path="res://pasta_pot/pasta_pot.gd" id="10_3kr8o"]
-[ext_resource type="Script" path="res://LunchBowl.gd" id="11_7wxfa"]
 [ext_resource type="Texture2D" uid="uid://d2f3dcjl8031c" path="res://pasta_pot/pasta_pot.png" id="11_igerw"]
 [ext_resource type="Script" path="res://protein_pan/protein_pan.gd" id="12_6l88t"]
-[ext_resource type="Texture2D" uid="uid://frv7w0f4r8d" path="res://lunch_bowl/lunch_bowl_food.png" id="12_h3fyd"]
 [ext_resource type="Script" path="res://water_container.gd" id="12_ogbyf"]
 [ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="13_3co5a"]
 [ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://Ingredients/Water/water.png" id="13_204wg"]
@@ -31,11 +29,12 @@
 [ext_resource type="AudioStream" uid="uid://cg1cs2a7uoeew" path="res://audio/sfx_pan_drainout.wav" id="17_03yrf"]
 [ext_resource type="AudioStream" uid="uid://nagm1vn4ine" path="res://audio/sfx_watercontainer_release.wav" id="17_qgytk"]
 [ext_resource type="Script" path="res://order_queue/order_queue.gd" id="22_y6jes"]
-[ext_resource type="Script" path="res://order.gd" id="23_8ba8u"]
-[ext_resource type="Texture2D" uid="uid://byy6hiu5mug1k" path="res://order_queue/message_balloon.png" id="23_jdigt"]
 [ext_resource type="AudioStream" uid="uid://ddd3pcfuo85kt" path="res://audio/sfx_open_bin.wav" id="23_yw5ka"]
 [ext_resource type="AudioStream" uid="uid://0myfy4yr6dlq" path="res://audio/sfx_throw_bin.wav" id="24_k866n"]
-[ext_resource type="Texture2D" uid="uid://c2co7e7oij4fu" path="res://common/ingredient_atlas.tres" id="25_m7bvp"]
+[ext_resource type="PackedScene" uid="uid://pd7yq40np5lh" path="res://lunch_bowl/lunch_bowl.tscn" id="25_qop25"]
+[ext_resource type="AudioStream" uid="uid://dw8el2y4mp7hv" path="res://audio/music_main_loop.wav" id="35_3eefc"]
+[ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://order_queue/phone.png" id="35_v6hgm"]
+[ext_resource type="Texture2D" uid="uid://dhfyvkr5qeor0" path="res://order_queue/notification.png" id="36_2xdfw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvjb6"]
 atlas = ExtResource("2_2yt8f")
@@ -651,39 +650,8 @@ size = Vector2(48, 47)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpxlt"]
 size = Vector2(5, 30)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbcl"]
-size = Vector2(37, 21)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqybt"]
 size = Vector2(85, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nreix"]
-atlas = ExtResource("9_e8bw1")
-region = Rect2(64, 0, 64, 64)
-margin = Rect2(-20, -20, -40, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mkmyj"]
-atlas = ExtResource("9_e8bw1")
-region = Rect2(64, 192, 64, 64)
-margin = Rect2(-20, -20, -40, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_se62r"]
-atlas = ExtResource("9_e8bw1")
-region = Rect2(64, 128, 64, 64)
-margin = Rect2(-20, -20, -40, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jav2u"]
-atlas = ExtResource("9_e8bw1")
-region = Rect2(64, 320, 64, 64)
-margin = Rect2(-20, -20, -40, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a0rs4"]
-atlas = ExtResource("9_e8bw1")
-region = Rect2(0, 256, 64, 64)
-margin = Rect2(-20, -20, -40, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qauwx"]
-size = Vector2(101, 33)
 
 [node name="Kitchen" type="Node"]
 
@@ -1139,70 +1107,10 @@ shape = SubResource("RectangleShape2D_dpxlt")
 stream = ExtResource("17_qgytk")
 bus = &"SFX"
 
-[node name="LunchBowl" type="Node2D" parent="."]
-position = Vector2(223, 154)
-script = ExtResource("11_7wxfa")
+[node name="LunchBowl" parent="." instance=ExtResource("25_qop25")]
 
-[node name="Sprites" type="Node" parent="LunchBowl"]
-
-[node name="background" type="Sprite2D" parent="LunchBowl/Sprites"]
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-
-[node name="cooked_beans" type="Sprite2D" parent="LunchBowl/Sprites"]
-visible = false
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 1
-
-[node name="cooked_rice" type="Sprite2D" parent="LunchBowl/Sprites"]
-visible = false
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 2
-
-[node name="cooked_pasta" type="Sprite2D" parent="LunchBowl/Sprites"]
-visible = false
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 3
-
-[node name="cooked_chicken" type="Sprite2D" parent="LunchBowl/Sprites"]
-visible = false
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 4
-
-[node name="salad" type="Sprite2D" parent="LunchBowl/Sprites"]
-visible = false
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 5
-
-[node name="cooked_egg" type="Sprite2D" parent="LunchBowl/Sprites"]
-visible = false
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 6
-
-[node name="foreground" type="Sprite2D" parent="LunchBowl/Sprites"]
-position = Vector2(223, 154)
-texture = ExtResource("12_h3fyd")
-vframes = 8
-frame = 7
-
-[node name="Area2D" type="Area2D" parent="LunchBowl"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LunchBowl/Area2D"]
-position = Vector2(0.5, -0.5)
-shape = SubResource("RectangleShape2D_lhbcl")
+[node name="LunchBowl2" parent="." instance=ExtResource("25_qop25")]
+position = Vector2(266, 154)
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -20
@@ -1231,108 +1139,15 @@ pitch_scale = 3.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="HUD"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("22_y6jes")
-
-[node name="Order" type="Control" parent="HUD/Control"]
-anchors_preset = 0
-offset_left = 240.0
-offset_top = 2.0
-offset_right = 280.0
-offset_bottom = 42.0
-script = ExtResource("23_8ba8u")
-
-[node name="MessageBalloon" type="TextureRect" parent="HUD/Control/Order"]
-layout_mode = 0
-offset_left = 61.0
-offset_top = -5.0
-offset_right = 183.0
-offset_bottom = 60.0
-texture = ExtResource("23_jdigt")
-
-[node name="Ingredients" type="Control" parent="HUD/Control/Order/MessageBalloon"]
-anchors_preset = 0
-offset_left = 46.0
-offset_top = 19.0
-offset_right = 86.0
-offset_bottom = 59.0
-
-[node name="cooked_egg" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 10.0
-offset_right = 23.0
-offset_bottom = 74.0
-texture = ExtResource("25_m7bvp")
-expand_mode = 3
-
-[node name="cooked_chicken" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
-layout_mode = 2
-offset_top = 1.0
-offset_right = 24.0
-offset_bottom = 65.0
-texture = SubResource("AtlasTexture_nreix")
-expand_mode = 3
-
-[node name="cooked_rice" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
-layout_mode = 2
-offset_left = 20.0
-offset_top = -1.0
-offset_right = 44.0
-offset_bottom = 63.0
-texture = SubResource("AtlasTexture_mkmyj")
-expand_mode = 3
-
-[node name="cooked_beans" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
-layout_mode = 2
-offset_left = 40.0
-offset_top = 10.0
-offset_right = 64.0
-offset_bottom = 74.0
-texture = SubResource("AtlasTexture_se62r")
-expand_mode = 3
-
-[node name="cooked_pasta" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
-layout_mode = 2
-offset_left = 23.0
-offset_top = 9.0
-offset_right = 47.0
-offset_bottom = 73.0
-texture = SubResource("AtlasTexture_jav2u")
-expand_mode = 3
-
-[node name="salad" type="TextureRect" parent="HUD/Control/Order/MessageBalloon/Ingredients"]
-layout_mode = 2
-offset_left = 39.0
-offset_top = -1.0
-offset_right = 63.0
-offset_bottom = 63.0
-texture = SubResource("AtlasTexture_a0rs4")
-expand_mode = 3
-
-[node name="Area2D" type="Area2D" parent="HUD/Control/Order/MessageBalloon"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HUD/Control/Order/MessageBalloon/Area2D"]
-position = Vector2(66.5, 34.5)
-shape = SubResource("RectangleShape2D_qauwx")
-
-[node name="Pedidos" type="Label" parent="HUD/Control"]
+[node name="Pedidos" type="Label" parent="HUD"]
 visible = false
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -104.0
 offset_top = 15.0
 offset_right = -13.0
-offset_bottom = 116.0
+offset_bottom = 135.0
 grow_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -1345,9 +1160,8 @@ FRANGO
 "
 horizontal_alignment = 1
 
-[node name="MinutesTimer" type="Label" parent="HUD/Control"]
+[node name="MinutesTimer" type="Label" parent="HUD"]
 visible = false
-layout_mode = 0
 offset_left = 14.0
 offset_top = 15.0
 offset_right = 75.0
@@ -1360,9 +1174,8 @@ text = "00:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="SecondsTimer" type="Label" parent="HUD/Control"]
+[node name="SecondsTimer" type="Label" parent="HUD"]
 visible = false
-layout_mode = 0
 offset_left = 63.0
 offset_top = 15.0
 offset_right = 124.0
@@ -1375,9 +1188,56 @@ text = "00"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="OrderControl" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("22_y6jes")
+
+[node name="Orders" type="VBoxContainer" parent="HUD/OrderControl"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_top = -6.0
+offset_right = -4.0
+offset_bottom = 193.06
+grow_horizontal = 0
+alignment = 2
+
+[node name="Phone" type="TextureRect" parent="HUD/OrderControl"]
+layout_mode = 0
+offset_left = -107.0
+offset_top = 186.0
+offset_right = -1.0
+offset_bottom = 314.0
+texture = ExtResource("35_v6hgm")
+
+[node name="Notification" type="TextureRect" parent="HUD/OrderControl/Phone"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 31.0
+offset_right = 182.0
+offset_bottom = 159.0
+scale = Vector2(0.200005, 0.200005)
+texture = ExtResource("36_2xdfw")
+
+[node name="Timer" type="Timer" parent="HUD/OrderControl"]
+wait_time = 3.0
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("35_3eefc")
+autoplay = true
+
 [connection signal="grabbed_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="LunchBowl2" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/BeansPot/Area2D" to="Stove/BeansPot" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/BeansPot/Area2D" to="Stove/BeansPot" method="_on_area_2d_mouse_exited"]
@@ -1385,6 +1245,7 @@ vertical_alignment = 1
 [connection signal="grabbed_cooked_ingredient" from="Stove/RicePan" to="Stove/RicePan/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/RicePan" to="Stove/RicePan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/RicePan" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/RicePan" to="LunchBowl2" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/RicePan" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/RicePan/Area2D" to="Stove/RicePan" method="_on_area_2d_mouse_exited"]
@@ -1392,6 +1253,7 @@ vertical_alignment = 1
 [connection signal="grabbed_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Stove/PastaPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="LunchBowl2" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/PastaPot" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/PastaPot/Area2D" to="Stove/PastaPot" method="_on_area_2d_mouse_exited"]
@@ -1399,6 +1261,7 @@ vertical_alignment = 1
 [connection signal="grabbed_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Stove/ProteinPan/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="LunchBowl2" method="_on_released_cooked_ingredient"]
 [connection signal="released_cooked_ingredient" from="Stove/ProteinPan" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/ProteinPan/Area2D" to="Stove/ProteinPan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/ProteinPan/Area2D" to="Stove/ProteinPan" method="_on_area_2d_mouse_exited"]
@@ -1407,16 +1270,18 @@ vertical_alignment = 1
 [connection signal="ingredient_released" from="IngredientSpawners/BeansSpawner" to="Stove/BeansPot" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/PastaSpawner" to="Stove/PastaPot" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/SaladSpawner" to="LunchBowl" method="_on_released_cooked_ingredient"]
+[connection signal="ingredient_released" from="IngredientSpawners/SaladSpawner" to="LunchBowl2" method="_on_released_cooked_ingredient"]
 [connection signal="ingredient_released" from="IngredientSpawners/ChickenSpawner" to="Stove/ProteinPan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/EggSpawner" to="Stove/ProteinPan" method="_on_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/BeansPot" method="_on_water_container_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/RicePan" method="_on_water_container_ingredient_released"]
 [connection signal="ingredient_released" from="IngredientSpawners/WaterContainer" to="Stove/PastaPot" method="_on_water_container_ingredient_released"]
 [connection signal="input_event" from="IngredientSpawners/WaterContainer/GrabArea" to="IngredientSpawners/WaterContainer" method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="LunchBowl/Area2D" to="LunchBowl" method="_on_area_2d_mouse_exited"]
+[connection signal="lunch_dropped" from="LunchBowl" to="Trashcan" method="_on_released_cooked_ingredient"]
+[connection signal="lunch_dropped" from="LunchBowl2" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Trashcan/Area2D" to="Trashcan" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Trashcan/Area2D" to="Trashcan" method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="HUD/OrderControl/Timer" to="HUD/OrderControl" method="_on_timer_timeout"]
 
 [editable path="IngredientSpawners/RiceSpawner"]
 [editable path="IngredientSpawners/BeansSpawner"]

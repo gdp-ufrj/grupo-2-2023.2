@@ -19,9 +19,9 @@ func _on_area_2d_mouse_exited():
 	_is_mouse_inside_trashcan = false
 	self.scale = Vector2.ONE
 
-func _on_released_cooked_ingredient(ingredient, decrease_ingredient):
+func _on_released_cooked_ingredient(ingredient, after_drop_callback):
 	if(_is_mouse_inside_trashcan):
-		decrease_ingredient.call()
+		after_drop_callback.call()
 		_audio.stream = _on_drop_inside_audio
 		_audio.pitch_scale = 1
 		_audio.play()

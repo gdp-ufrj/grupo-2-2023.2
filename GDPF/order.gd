@@ -1,14 +1,23 @@
-extends Control
+extends TextureRect
 class_name Order
 
-signal correct_order_delivered(current_mood)
+signal correct_order_delivered(current_mood: Mood)
 signal wrong_order_delivered
 
-@export var acceptable_ingredients = [
+var possible_ingredients = [
+	"cooked_rice",
+	"cooked_beans",
+	"cooked_chicken",
 	"cooked_egg",
-	"cooked_chicken"
+	"cooked_pasta",
+	"salad"
 ]
+
+var acceptable_ingredients = []
+
 @export var current_mood = Mood.happy
+@export var min_ingredient_amount = 2
+@export var max_ingredient_amount = 6
 
 enum Mood{
 	happy,
@@ -17,23 +26,40 @@ enum Mood{
 	angry
 }
 
-@onready var _ingredients = $MessageBalloon/Ingredients
+@onready var _ingredients = $Ingredients
+@onready var _animator = $OrderBalloon
 
-var _is_mouse_inside = false
+var _is_lunch_inside = false
+
+func _animator_play_mood(mood : Mood):
+	_animator.play(Mood.keys()[mood])
 
 func _ready():
 	_shuffle_ingredients_positions()
+	_randomize_acceptable_ingredients(min_ingredient_amount, max_ingredient_amount)
 	_show_only_acceptable_ingredients()
+	_animator_play_mood(current_mood)
 
-func _on_lunchbowl_dropped(lunch_ingredients: Array[String]):
+func _randomize_acceptable_ingredients(min_amount, max_amount):
+	possible_ingredients.shuffle()
+	self.acceptable_ingredients = possible_ingredients.slice(0, randi_range(max(1, min_amount), min(max_amount, possible_ingredients.size()-1)))
+
+func on_lunch_bowl_lunch_dropped(lunch_ingredients: Array[String], drop_inside_callback = func(): pass):
+	print("on_lunch_bowl_dropped")
+	print(drop_inside_callback)
+	drop_inside_callback.call()
 	lunch_ingredients.sort()
 	acceptable_ingredients.sort()
-	if(lunch_ingredients == acceptable_ingredients):
+	print(lunch_ingredients, acceptable_ingredients)
+	if(lunch_ingredients.hash() == acceptable_ingredients.hash() and _is_lunch_inside):
 		correct_order_delivered.emit(current_mood)
+		_on_correct_order_delivered(current_mood)
 	else:
 		wrong_order_delivered.emit()
+
 	
 func _on_correct_order_delivered(current_mood: Mood):
+	print("Delivered order with " + Mood.keys()[current_mood])
 	self.queue_free()
 
 func _shuffle_ingredients_positions():
@@ -52,4 +78,17 @@ func _show_only_acceptable_ingredients():
 			ingredient.visible = true
 		else:
 			ingredient.visible = false
-			
+		
+
+
+func _on_area_2d_area_entered(area):
+	for child in self.get_children():
+		if child is LunchBowl:
+			_is_lunch_inside = true
+			_animator.scale = Vector2(1.1, 1.1)
+	
+func _on_area_2d_area_exited(area):
+	for child in self.get_children():
+		if child is LunchBowl:
+			_is_lunch_inside = true
+			_animator.scale = Vector2.ONE

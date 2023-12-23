@@ -1,4 +1,54 @@
 extends Control
+
+@export var initial_wait_time = 3
+@export var max_orders_amount = 6
+
+@onready var _orders = $Orders
+@onready var _timer = $Timer
+
+var order_scene = preload("res://order_queue/order.tscn")
+
+const mode = {
+	"easy" = {
+		"min_ingredient_amount" = 2,
+		"max_ingredient_amount" = 3,
+		"min_wait_time" = 25,
+		"max_wait_time" = 40
+	},
+	"medium" = {
+		"min_ingredient_amount" = 3,
+		"max_ingredient_amount" = 6,
+		"min_wait_time" = 20,
+		"max_wait_time" = 30
+	},
+	"hard" = {
+		"min_ingredient_amount" = 4,
+		"max_ingredient_amount" = 6,
+		"min_wait_time" = 10,
+		"max_wait_time" = 16
+	}
+}
+
+var _current_difficulty = "easy"
+
+func _ready():
+	_timer.wait_time = initial_wait_time
+	_timer.start()
+	
+func _new_order():
+	var order = order_scene.instantiate() as Order
+	order.min_ingredient_amount = mode[_current_difficulty]["min_ingredient_amount"]
+	order.max_ingredient_amount = mode[_current_difficulty]["max_ingredient_amount"]
+	_orders.add_child(order)
+	var min_time = mode[_current_difficulty]["min_wait_time"]
+	var max_time = mode[_current_difficulty]["max_wait_time"]
+	var next_wait_time = randf_range(min_time, max_time)
+	_timer.wait_time = next_wait_time
+	_timer.start()
+	
+func _on_timer_timeout():
+	if _orders.get_children().size() <= max_orders_amount:
+		_new_order()
 #
 #@onready var pedidosText := $Pedidos
 #@onready var minutesText := $MinutesTimer
@@ -115,3 +165,4 @@ extends Control
 #	for n in scores.size():
 #		score_total += scores[n]
 #	return score_total
+
