@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv6hw38u1iwmq"]
+
+[ext_resource type="Texture2D" uid="uid://bycpnc74vvrhn" path="res://order_queue/health.png" id="1_0uqps"]
+
+[node name="HealthIcon" type="TextureRect"]
+texture = ExtResource("1_0uqps")

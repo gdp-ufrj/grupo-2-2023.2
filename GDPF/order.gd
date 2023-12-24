@@ -3,6 +3,9 @@ class_name Order
 
 signal correct_order_delivered(current_mood: Mood)
 signal wrong_order_delivered
+signal order_timeout
+
+const MAX_INT = 9223372036854775807
 
 var possible_ingredients : Array[String] = [
 	"cooked_rice",
@@ -43,6 +46,9 @@ var acceptable_ingredients : Array[String] = []
 @export var current_mood = Mood.happy
 @export var min_ingredient_amount = 2
 @export var max_ingredient_amount = 6
+@export var on_correct_order_delivered_audio : AudioStream
+@export var on_wrong_order_delivered_audio : AudioStream
+@export var on_order_timeout_audio : AudioStream
 
 enum Mood{
 	happy,
@@ -54,9 +60,11 @@ enum Mood{
 @onready var _ingredients = $Ingredients
 @onready var _animator : AnimatedSprite2D = $OrderBalloon
 @onready var _timer : TimerWithRect = $Timer
+@onready var _audio : AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 @onready var _score_controller : ScoreController = get_tree().get_root().get_node("Kitchen").get_node("%ScoreController")
 
 var _is_lunch_inside = false
+var _is_tutorial = false
 
 func _animator_play_mood(mood : Mood):
 	_animator.play(Mood.keys()[mood])
@@ -76,20 +84,24 @@ func _process(dt):
 func _ready():
 	_shuffle_ingredients_positions()
 	_randomize_acceptable_ingredients(min_ingredient_amount, max_ingredient_amount)
+	_set_up_timer(acceptable_ingredients)
 	_show_only_acceptable_ingredients()
 	_animator_play_mood(current_mood)
-	_set_up_timer(acceptable_ingredients)
 
 func _set_up_timer(acceptable_ingredients):
 	var time_sum = 0
 	for ingredient in acceptable_ingredients:
 		time_sum += ingredient_wait_time[ingredient]
+	if _is_tutorial:
+		time_sum = MAX_INT
 	_timer.set_wait_time(time_sum)
 	_timer.start()
 	
 func _randomize_acceptable_ingredients(min_amount, max_amount):
 	possible_ingredients.shuffle()
 	self.acceptable_ingredients = possible_ingredients.slice(0, randi_range(max(1, min_amount), min(max_amount, possible_ingredients.size()-1)))
+	if _is_tutorial:
+		self.acceptable_ingredients = ["cooked_rice", "cooked_beans"]
 
 func on_lunch_bowl_lunch_dropped(lunch_ingredients: Array[String], drop_inside_callback = func(): pass):
 	lunch_ingredients.sort()
@@ -99,17 +111,24 @@ func on_lunch_bowl_lunch_dropped(lunch_ingredients: Array[String], drop_inside_c
 		correct_order_delivered.emit(current_mood)
 		_on_correct_order_delivered(current_mood)
 	else:
-		wrong_order_delivered.emit()
+		if(!_is_tutorial):
+			wrong_order_delivered.emit()
+			_on_wrong_order_delivered()
 
 	
 func _on_correct_order_delivered(current_mood: Mood):
 	print("Delivered order with " + Mood.keys()[current_mood])
 	var _deliever_score = _calculate_score(current_mood, acceptable_ingredients)
 	_score_controller.increase_score_by(_deliever_score)
+	_audio.stream = on_correct_order_delivered_audio
+	_audio.play()
 	self.queue_free()
 	
-func _on_wrong_order_delivered(current_mood: Mood):
+func _on_wrong_order_delivered():
 	print("Wrong Delivery")
+	_score_controller.decrease_health()
+	_audio.stream = on_wrong_order_delivered_audio
+	_audio.play()
 	self.queue_free()
 	
 	
@@ -150,3 +169,12 @@ func _on_area_2d_area_exited(area):
 		if child is LunchBowl:
 			_is_lunch_inside = true
 			_animator.scale = Vector2.ONE
+
+
+func _on_timer_timeout():
+	print("Lost Order")
+	_score_controller.decrease_health()
+	_audio.stream = on_order_timeout_audio
+	_audio.play()
+	order_timeout.emit()
+	self.queue_free()

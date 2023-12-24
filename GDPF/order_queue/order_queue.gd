@@ -1,7 +1,7 @@
 extends Control
 
 @export var initial_wait_time = 3
-@export var max_orders_amount = 6
+@export var max_orders_amount = 5
 
 @onready var _orders = $Orders
 @onready var _timer = $Timer
@@ -47,6 +47,8 @@ func _new_order():
 	var order = order_scene.instantiate() as Order
 	order.min_ingredient_amount = mode[_current_difficulty]["min_ingredient_amount"]
 	order.max_ingredient_amount = mode[_current_difficulty]["max_ingredient_amount"]
+	if(_current_difficulty == "tutorial"):
+		order._is_tutorial = true
 	_orders.add_child(order)
 	var min_time = mode[_current_difficulty]["min_wait_time"]
 	var max_time = mode[_current_difficulty]["max_wait_time"]
@@ -55,7 +57,7 @@ func _new_order():
 	_timer.start()
 	
 func _on_timer_timeout():
-	if _orders.get_children().size() <= max_orders_amount:
+	if _orders.get_children().size() < max_orders_amount:
 		_new_order()
 		
 func _on_score_changed(new_score):

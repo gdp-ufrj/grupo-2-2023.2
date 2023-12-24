@@ -1184,12 +1184,14 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -126.0
-offset_top = -6.0
-offset_right = -4.0
-offset_bottom = 193.06
+offset_left = -125.0
+offset_top = -17.0
+offset_right = -3.0
+offset_bottom = 182.06
 grow_horizontal = 0
 alignment = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="HUD/OrderControl/Orders"]
 
 [node name="Timer" type="Timer" parent="HUD/OrderControl"]
 wait_time = 3.0
@@ -1197,9 +1199,9 @@ wait_time = 3.0
 [node name="PhoneControl" type="Control" parent="HUD"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 9.0
+offset_top = -2.0
 offset_right = 40.0
-offset_bottom = 49.0
+offset_bottom = 38.0
 
 [node name="Phone" type="TextureRect" parent="HUD/PhoneControl"]
 layout_mode = 0
@@ -1209,14 +1211,20 @@ offset_right = 426.0
 offset_bottom = 316.0
 texture = ExtResource("35_v6hgm")
 
+[node name="HealthContainer" type="HBoxContainer" parent="HUD/PhoneControl/Phone"]
+unique_name_in_owner = true
+offset_left = 14.0
+offset_top = 39.0
+offset_right = 90.0
+offset_bottom = 50.0
+
 [node name="Notification" type="TextureRect" parent="HUD/PhoneControl/Phone"]
 visible = false
 layout_mode = 0
-offset_left = 65.0
+offset_left = 59.0
 offset_top = 23.0
-offset_right = 171.0
-offset_bottom = 151.0
-scale = Vector2(0.280005, 0.160005)
+offset_right = 93.0
+offset_bottom = 50.0
 texture = ExtResource("36_2xdfw")
 
 [node name="ScoreLabel" type="Label" parent="HUD/PhoneControl"]
