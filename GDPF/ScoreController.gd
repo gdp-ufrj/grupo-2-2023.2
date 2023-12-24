@@ -27,7 +27,9 @@ func increase_score_by(value: float):
 func decrease_health():
 	if current_health > 1:
 		current_health -= 1
-		_health_container.get_child(0).queue_free()
+		var child_number = _health_container.get_child_count() - 1
+		_health_container.get_child(child_number).get_node("AnimationPlayer").play("fade_out")
+		#_health_container.get_child(0).queue_free()
 	else:
 		player_lost.emit(current_score)
 		print("Player lose")
