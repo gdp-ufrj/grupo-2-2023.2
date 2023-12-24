@@ -122,6 +122,7 @@ func _on_correct_order_delivered(current_mood: Mood):
 	_score_controller.increase_score_by(_deliever_score)
 	_audio.stream = on_correct_order_delivered_audio
 	_audio.play()
+	get_node("OrderBalloon/numbers_popup").popup(_deliever_score)
 	self.queue_free()
 	
 func _on_wrong_order_delivered():
