@@ -106,6 +106,7 @@ func _on_correct_order_delivered(current_mood: Mood):
 	print("Delivered order with " + Mood.keys()[current_mood])
 	var _deliever_score = _calculate_score(current_mood, acceptable_ingredients)
 	_score_controller.increase_score_by(_deliever_score)
+	get_node("OrderBalloon/numbers_popup").popup(_deliever_score)
 	self.queue_free()
 	
 func _on_wrong_order_delivered(current_mood: Mood):
