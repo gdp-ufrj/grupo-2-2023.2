@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4ihr6nehyroe"]
+
+[ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="1_y3ybf"]
+[ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://order_queue/phone.png" id="2_1n5ra"]
+[ext_resource type="FontFile" uid="uid://crxqrt5c2jrp3" path="res://Fonts/joystix monospace.otf" id="3_rc1py"]
+[ext_resource type="PackedScene" uid="uid://bv6hw38u1iwmq" path="res://order_queue/health_icon.tscn" id="4_pwej3"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_y3ybf")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 426.0
+offset_bottom = 240.0
+color = Color(0, 0, 0, 0.717647)
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 7.0
+offset_right = 320.0
+offset_bottom = 231.0
+
+[node name="Phone" type="TextureRect" parent="Control/Control"]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 112.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_1n5ra")
+
+[node name="Label" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 50.0
+offset_right = 152.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_rc1py")
+text = "Pontuação"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = 4.00001
+offset_right = 9.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.8, 1.8)
+
+[node name="HealthIcon" parent="Control/Control/HBoxContainer" instance=ExtResource("4_pwej3")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="HealthIcon2" parent="Control/Control/HBoxContainer" instance=ExtResource("4_pwej3")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="HealthIcon3" parent="Control/Control/HBoxContainer" instance=ExtResource("4_pwej3")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="HealthIcon4" parent="Control/Control/HBoxContainer" instance=ExtResource("4_pwej3")]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="HealthIcon5" parent="Control/Control/HBoxContainer" instance=ExtResource("4_pwej3")]
+layout_mode = 2
+stretch_mode = 2
