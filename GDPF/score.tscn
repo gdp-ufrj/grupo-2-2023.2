@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4ihr6nehyroe"]
+[gd_scene load_steps=7 format=3 uid="uid://c4ihr6nehyroe"]
 
 [ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://background.png" id="1_y3ybf"]
 [ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://order_queue/phone.png" id="2_1n5ra"]
 [ext_resource type="FontFile" uid="uid://crxqrt5c2jrp3" path="res://Fonts/joystix monospace.otf" id="3_rc1py"]
 [ext_resource type="PackedScene" uid="uid://bv6hw38u1iwmq" path="res://order_queue/health_icon.tscn" id="4_pwej3"]
+[ext_resource type="Texture2D" uid="uid://dwn4bgc76s36p" path="res://icon/Home.svg" id="5_p1mry"]
+[ext_resource type="Texture2D" uid="uid://sq6dwvcd7x0d" path="res://icon/PlayArrow.svg" id="6_amhqf"]
 
 [node name="Background" type="Node2D"]
 
@@ -53,6 +55,26 @@ theme_override_fonts/font = ExtResource("3_rc1py")
 text = "Pontuação"
 horizontal_alignment = 1
 
+[node name="Score" type="Label" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -30.5
+offset_right = 70.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_rc1py")
+text = "00000000"
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -87,3 +109,22 @@ stretch_mode = 2
 [node name="HealthIcon5" parent="Control/Control/HBoxContainer" instance=ExtResource("4_pwej3")]
 layout_mode = 2
 stretch_mode = 2
+
+[node name="Button Menu" type="Button" parent="Control/Control"]
+layout_mode = 2
+offset_left = 44.0
+offset_top = 149.0
+offset_right = 119.0
+offset_bottom = 224.0
+scale = Vector2(0.400001, 0.400001)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+icon = ExtResource("5_p1mry")
+
+[node name="Button Play" type="Button" parent="Control/Control"]
+layout_mode = 2
+offset_left = 104.0
+offset_top = 149.0
+offset_right = 179.0
+offset_bottom = 224.0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("6_amhqf")

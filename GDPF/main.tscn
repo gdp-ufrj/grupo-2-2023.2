@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=111 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://rice_pot/rice_pan.gd" id="1_jx7bk"]
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://ddd3pcfuo85kt" path="res://audio/sfx_open_bin.wav" id="23_yw5ka"]
 [ext_resource type="AudioStream" uid="uid://0myfy4yr6dlq" path="res://audio/sfx_throw_bin.wav" id="24_k866n"]
 [ext_resource type="PackedScene" uid="uid://pd7yq40np5lh" path="res://lunch_bowl/lunch_bowl.tscn" id="25_qop25"]
+[ext_resource type="AudioStream" uid="uid://bs3biqg6ql87" path="res://audio/sfx_cellphone_notification.wav" id="33_oeuvh"]
 [ext_resource type="AudioStream" uid="uid://dw8el2y4mp7hv" path="res://audio/music_main_loop.wav" id="35_3eefc"]
 [ext_resource type="FontFile" uid="uid://dfae4tjwcrksg" path="res://Fonts/DisposableDroidBB.ttf" id="35_ha27c"]
 [ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://order_queue/phone.png" id="35_v6hgm"]
@@ -1177,6 +1178,7 @@ anchor_right = 1.0
 grow_horizontal = 0
 mouse_filter = 2
 script = ExtResource("22_y6jes")
+new_order_audio = ExtResource("33_oeuvh")
 
 [node name="Orders" type="VBoxContainer" parent="HUD/OrderControl"]
 layout_direction = 2

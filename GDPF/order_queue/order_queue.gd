@@ -3,12 +3,16 @@ extends Control
 @export var initial_wait_time = 3
 @export var max_orders_amount = 5
 
+@export var new_order_audio : AudioStream
+
 @onready var _orders = $Orders
 @onready var _timer = $Timer
+@onready var _audio : AudioStreamPlayer2D = get_node("Orders/AudioStreamPlayer2D")
 
 const MAX_INT = 9223372036854775807
 
 var order_scene = preload("res://order_queue/order.tscn")
+
 
 const mode = {
 	"tutorial" = {
@@ -55,6 +59,8 @@ func _new_order():
 	var next_wait_time = randf_range(min_time, max_time)
 	_timer.wait_time = next_wait_time
 	_timer.start()
+	_audio.stream = new_order_audio
+	_audio.play()
 	
 func _on_timer_timeout():
 	if _orders.get_children().size() < max_orders_amount:
@@ -63,12 +69,12 @@ func _on_timer_timeout():
 func _on_score_changed(new_score):
 	print(_timer.wait_time)
 	print(_current_difficulty)
-	if _current_difficulty == "tutorial" and new_score > 0 and new_score < 75:
+	if _current_difficulty == "tutorial" and new_score > 0 and new_score < 60:
 		_current_difficulty = "easy"
 		_new_order()
-	elif _current_difficulty == "easy" and new_score > 75 and new_score < 300:
+	elif _current_difficulty == "easy" and new_score > 60 and new_score < 200:
 		_current_difficulty = "medium"
-	elif _current_difficulty == "medium" and new_score > 300:
+	elif _current_difficulty == "medium" and new_score > 200:
 		_current_difficulty = "hard"
 #
 #@onready var pedidosText := $Pedidos

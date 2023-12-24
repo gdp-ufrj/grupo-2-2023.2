@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckhdrit3mtl2x"]
+[gd_scene load_steps=26 format=3 uid="uid://ckhdrit3mtl2x"]
 
 [ext_resource type="Texture2D" uid="uid://byy6hiu5mug1k" path="res://order_queue/message_balloon.png" id="1_bf721"]
 [ext_resource type="Script" path="res://order.gd" id="2_nk18p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://order_queue/numbers_popup.gd" id="4_ejxbw"]
 [ext_resource type="PackedScene" uid="uid://beropx1831py1" path="res://common/NumbersPopup.tscn" id="5_5nito"]
 [ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://Ingredients/ingredients.png" id="5_gun7u"]
+[ext_resource type="AudioStream" uid="uid://c8w7mrgch6hsv" path="res://audio/sfx_order_timeout.wav" id="5_mbpqs"]
 [ext_resource type="Script" path="res://order_queue/timer_with_rect.gd" id="6_ee6q2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6y5n"]
@@ -117,6 +118,7 @@ texture = ExtResource("1_bf721")
 script = ExtResource("2_nk18p")
 on_correct_order_delivered_audio = ExtResource("3_151kh")
 on_wrong_order_delivered_audio = ExtResource("4_b4afs")
+on_order_timeout_audio = ExtResource("5_mbpqs")
 
 [node name="OrderBalloon" type="AnimatedSprite2D" parent="."]
 position = Vector2(61, 16)
