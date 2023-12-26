@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://raqiati5ah5s"
-path="res://.godot/imported/rice_pot.png-86da8e20430f1b23c75da63625f20bdd.ctex"
+uid="uid://cy35dhnbt3slv"
+path="res://.godot/imported/MARMITA.png-4a01f72bbd13d283c3844c7da0cd74f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rice_pot/rice_pot.png"
-dest_files=["res://.godot/imported/rice_pot.png-86da8e20430f1b23c75da63625f20bdd.ctex"]
+source_file="res://icon/MARMITA.png"
+dest_files=["res://.godot/imported/MARMITA.png-4a01f72bbd13d283c3844c7da0cd74f6.ctex"]
 
 [params]
 

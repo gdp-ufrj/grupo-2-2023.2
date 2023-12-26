@@ -29,10 +29,14 @@ func decrease_health():
 		current_health -= 1
 		var child_number = _health_container.get_child_count() - 1
 		_health_container.get_child(child_number).get_node("AnimationPlayer").play("fade_out")
-		#_health_container.get_child(0).queue_free()
 	else:
-		player_lost.emit(current_score)
+		_on_player_lose()
 		print("Player lose")
 	
 func _format_score_label(score : float):
 	return "R$ %.2f" % score
+
+func _on_player_lose():	
+	SceneSwitcher.switch_scene("res://score.tscn")
+	player_lost.emit(current_score)
+	Globals.score = current_score

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://beans_pot/beans_pot.gd" id="1_n5ygu"]
 [ext_resource type="Texture2D" uid="uid://btanrns7dlcuf" path="res://beans_pot/beans_pot.png" id="2_2yt8f"]
 [ext_resource type="AudioStream" uid="uid://chi8pp80eb57" path="res://audio/sfx_pan_cook.wav" id="2_hxljk"]
-[ext_resource type="Texture2D" uid="uid://botpcrev7ir8m" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
+[ext_resource type="Texture2D" uid="uid://raqiati5ah5s" path="res://rice_pot/rice_pot.png" id="2_kc8j4"]
 [ext_resource type="PackedScene" uid="uid://c3poo7bdhm2vk" path="res://Ingredients/ingredient_spawner.tscn" id="3_j3iym"]
 [ext_resource type="Script" path="res://stove/fire_knob.gd" id="4_i2gv8"]
 [ext_resource type="AudioStream" uid="uid://c84kppl4304ki" path="res://audio/sfx_stove_on.wav" id="4_shgnc"]

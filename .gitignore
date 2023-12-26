@@ -16,3 +16,8 @@ mono_crash.*.json
 
 # Don't include .tmp files
 *.tmp
+
+# Don't include build or zip files
+
+*.exe
+*.zip
