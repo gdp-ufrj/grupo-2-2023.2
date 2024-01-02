@@ -1,0 +1,815 @@
+[gd_scene load_steps=44 format=3 uid="uid://dr60dk1d4evnr"]
+
+[ext_resource type="Script" path="res://_scenes/main_menu_scene.gd" id="1_xi4lk"]
+[ext_resource type="Texture2D" uid="uid://dftio1om87f14" path="res://common/menu_background.png" id="1_xw08o"]
+[ext_resource type="Texture2D" uid="uid://bqpyrmv6vyoke" path="res://entities/ingredients/water/water.png" id="2_d562m"]
+[ext_resource type="AudioStream" uid="uid://bwydeyitrajxy" path="res://common/audio/uisfx_object_hover.wav" id="2_ri8ii"]
+[ext_resource type="Texture2D" uid="uid://br2vuxvoba0or" path="res://common/white.png" id="2_t4j44"]
+[ext_resource type="Texture2D" uid="uid://dcy2gro3s2i5" path="res://common/window.png" id="2_vchxs"]
+[ext_resource type="AudioStream" uid="uid://cl36x87b00lot" path="res://common/audio/uisfx_object_click.wav" id="3_lvvy3"]
+[ext_resource type="Texture2D" uid="uid://cy35dhnbt3slv" path="res://common/icon/MARMITA.png" id="3_qcw2m"]
+[ext_resource type="Texture2D" uid="uid://df20d5yv2upf1" path="res://entities/ingredients/ingredients.png" id="4_hxoc5"]
+[ext_resource type="Texture2D" uid="uid://d2f3dcjl8031c" path="res://entities/pots/pasta_pot/pasta_pot.png" id="4_lsjcd"]
+[ext_resource type="Texture2D" uid="uid://d1dpuf0vv5jqp" path="res://entities/pots/protein_pan/protein_pan.png" id="6_lrhyg"]
+[ext_resource type="Texture2D" uid="uid://frv7w0f4r8d" path="res://entities/lunch_bowl/lunch_bowl_food.png" id="7_4ofwa"]
+[ext_resource type="Texture2D" uid="uid://deiloglpl5cul" path="res://common/cupboard.png" id="9_t5pyt"]
+[ext_resource type="FontFile" uid="uid://dab31oqcpt66a" path="res://common/fonts/Hijo Puta Peligroso.otf" id="10_yul8n"]
+[ext_resource type="Texture2D" uid="uid://dk3k3bcfvhlb7" path="res://common/logo.png" id="11_n4bwj"]
+[ext_resource type="Theme" uid="uid://dt6mf7wtyeux8" path="res://common/menu_theme.tres" id="16_3kd1k"]
+[ext_resource type="AudioStream" uid="uid://k4f1rj7b25mi" path="res://common/audio/music_main.wav" id="17_j3yuw"]
+[ext_resource type="Texture2D" uid="uid://d2xoa1nu8bqx5" path="res://common/gui_icons.png" id="17_jtpet"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_26dky"]
+emission_shape = 3
+emission_box_extents = Vector3(40, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(2, 0, 0)
+gravity = Vector3(0, -98, 0)
+initial_velocity_min = 27.03
+initial_velocity_max = 194.6
+angular_velocity_min = -25.0
+angular_velocity_max = 25.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 100.0
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 0.75
+scale_max = 1.5
+color = Color(1, 1, 1, 0.0352941)
+turbulence_noise_strength = 5.85
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp1jx"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou4ws"]
+atlas = ExtResource("2_d562m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsp12"]
+atlas = ExtResource("4_lsjcd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqctl"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2fb6"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gddwx"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqgss"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d3et"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hajpk"]
+atlas = ExtResource("4_hxoc5")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxw78"]
+atlas = ExtResource("6_lrhyg")
+region = Rect2(405, 0, 81, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jgbw8"]
+load_path = "res://.godot/imported/ingredients.png-514311f114bb39c05281390c3d79818d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfgw3"]
+atlas = SubResource("CompressedTexture2D_jgbw8")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2cfn"]
+atlas = SubResource("CompressedTexture2D_jgbw8")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyw5c"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt1rx"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_058s5"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ykmg"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1ytj"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_assgo"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uje8w"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h68rk"]
+emission_shape = 3
+emission_box_extents = Vector3(24, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(2, 0, 0)
+gravity = Vector3(0, -98, 0)
+angular_velocity_min = -25.0
+angular_velocity_max = 25.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 100.0
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 0.75
+scale_max = 1.5
+color = Color(1, 1, 1, 0.0352941)
+turbulence_noise_strength = 5.85
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbp33"]
+atlas = ExtResource("7_4ofwa")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plj2d"]
+atlas = ExtResource("17_jtpet")
+region = Rect2(0, 0, 14, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj5wo"]
+atlas = ExtResource("17_jtpet")
+region = Rect2(14, 0, 14, 13)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_xi4lk")
+button_hover_audio = ExtResource("2_ri8ii")
+button_click_audio = ExtResource("3_lvvy3")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 769.0
+offset_bottom = 240.0
+texture = ExtResource("1_xw08o")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 426.0
+offset_bottom = 240.0
+
+[node name="Assets" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="Cupboard" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = -134.0
+offset_top = -5.0
+offset_right = 2.0
+offset_bottom = 98.0
+scale = Vector2(1.32, 1.595)
+texture = ExtResource("9_t5pyt")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control/Assets"]
+position = Vector2(7, 148)
+scale = Vector2(0.5, 0.5)
+skew = 0.853466
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_26dky")
+texture = ExtResource("2_t4j44")
+lifetime = 2.0
+visibility_rect = Rect2(0, 0, 10, 10)
+
+[node name="Shadow" type="Control" parent="Control/Assets"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaladBowl" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 351.0
+offset_top = 209.0
+offset_right = 479.0
+offset_bottom = 337.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_jp1jx")
+
+[node name="Water" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 275.0
+offset_top = 224.0
+offset_right = 403.0
+offset_bottom = 352.0
+scale = Vector2(1, -0.339997)
+texture = SubResource("AtlasTexture_ou4ws")
+
+[node name="Packed Lunch" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 150.0
+offset_top = 230.0
+offset_right = 278.0
+offset_bottom = 358.0
+scale = Vector2(0.984368, -0.512844)
+texture = ExtResource("3_qcw2m")
+
+[node name="PastaPot" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = -56.0
+offset_top = 222.0
+offset_right = 72.0
+offset_bottom = 350.0
+scale = Vector2(1, -0.46)
+texture = SubResource("AtlasTexture_vsp12")
+
+[node name="Eggs" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 193.0
+offset_right = 175.0
+offset_bottom = 321.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_rqctl")
+
+[node name="Rice2" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 214.0
+offset_right = 147.0
+offset_bottom = 342.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="RicePot" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 209.0
+offset_right = 132.0
+offset_bottom = 337.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_gddwx")
+
+[node name="Beans3" type="TextureRect" parent="Control/Assets/Shadow"]
+visible = false
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = -47.0
+offset_top = 214.0
+offset_right = 81.0
+offset_bottom = 342.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_fqgss")
+
+[node name="BeansPot" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = -30.0
+offset_top = 210.0
+offset_right = 98.0
+offset_bottom = 338.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_1d3et")
+
+[node name="Beans2" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = -51.0
+offset_top = 166.0
+offset_right = 77.0
+offset_bottom = 294.0
+scale = Vector2(1.04577, 0.768471)
+texture = SubResource("AtlasTexture_fqgss")
+
+[node name="Rice3" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 214.0
+offset_right = 139.0
+offset_bottom = 342.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Rice4" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 214.0
+offset_right = 153.0
+offset_bottom = 342.0
+scale = Vector2(1, 0.1)
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Salad2" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 315.0
+offset_top = 200.0
+offset_right = 443.0
+offset_bottom = 328.0
+scale = Vector2(1, 0.300005)
+texture = SubResource("AtlasTexture_hajpk")
+
+[node name="Pan" type="TextureRect" parent="Control/Assets/Shadow"]
+modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 0
+offset_left = 337.0
+offset_top = 231.0
+offset_right = 465.0
+offset_bottom = 359.0
+scale = Vector2(1, -0.22)
+texture = SubResource("AtlasTexture_nxw78")
+expand_mode = 4
+stretch_mode = 4
+flip_h = true
+
+[node name="Window" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 39.0
+offset_right = 423.0
+offset_bottom = 102.0
+scale = Vector2(1.32, 1.32)
+texture = ExtResource("2_vchxs")
+
+[node name="SaladBowl" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 112.0
+offset_right = 479.0
+offset_bottom = 240.0
+texture = SubResource("AtlasTexture_jp1jx")
+
+[node name="Water" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 96.0
+offset_right = 405.0
+offset_bottom = 224.0
+texture = SubResource("AtlasTexture_ou4ws")
+
+[node name="Packed Lunch" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 116.0
+offset_right = 277.0
+offset_bottom = 244.0
+texture = ExtResource("3_qcw2m")
+
+[node name="PastaPot" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = -54.0
+offset_top = 91.0
+offset_right = 74.0
+offset_bottom = 219.0
+texture = SubResource("AtlasTexture_vsp12")
+
+[node name="Eggs" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 122.0
+offset_right = 175.0
+offset_bottom = 250.0
+texture = SubResource("AtlasTexture_rqctl")
+
+[node name="Rice5" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 702.0
+offset_top = 121.0
+offset_right = 830.0
+offset_bottom = 249.0
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Rice6" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 130.0
+offset_right = 836.0
+offset_bottom = 258.0
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Pasta" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 129.0
+offset_right = 796.0
+offset_bottom = 257.0
+texture = SubResource("AtlasTexture_xfgw3")
+
+[node name="Pasta2" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 692.0
+offset_top = 134.0
+offset_right = 820.0
+offset_bottom = 262.0
+texture = SubResource("AtlasTexture_xfgw3")
+
+[node name="Egg" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 655.0
+offset_top = 140.0
+offset_right = 783.0
+offset_bottom = 268.0
+texture = SubResource("AtlasTexture_u2cfn")
+
+[node name="Rice2" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 142.0
+offset_right = 147.0
+offset_bottom = 270.0
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="RicePot" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 128.0
+offset_right = 132.0
+offset_bottom = 256.0
+texture = SubResource("AtlasTexture_gddwx")
+
+[node name="Beans3" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = 142.0
+offset_right = 87.0
+offset_bottom = 270.0
+texture = SubResource("AtlasTexture_fqgss")
+
+[node name="BeansPot" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 130.0
+offset_right = 98.0
+offset_bottom = 258.0
+texture = SubResource("AtlasTexture_1d3et")
+
+[node name="Beans2" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = 149.0
+offset_right = 79.0
+offset_bottom = 277.0
+texture = SubResource("AtlasTexture_fqgss")
+
+[node name="Rice3" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 149.0
+offset_right = 139.0
+offset_bottom = 277.0
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Rice4" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 149.0
+offset_right = 153.0
+offset_bottom = 277.0
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Rice7" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 699.0
+offset_top = 151.0
+offset_right = 827.0
+offset_bottom = 279.0
+texture = SubResource("AtlasTexture_k2fb6")
+
+[node name="Salad2" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 133.0
+offset_right = 437.0
+offset_bottom = 261.0
+texture = SubResource("AtlasTexture_hajpk")
+
+[node name="Salad3" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 130.0
+offset_right = 448.0
+offset_bottom = 258.0
+texture = SubResource("AtlasTexture_hajpk")
+
+[node name="Salad5" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 120.0
+offset_right = 518.0
+offset_bottom = 248.0
+texture = SubResource("AtlasTexture_hajpk")
+
+[node name="Salad6" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 130.0
+offset_right = 525.0
+offset_bottom = 258.0
+texture = SubResource("AtlasTexture_hajpk")
+
+[node name="Pan" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 148.0
+offset_right = 468.0
+offset_bottom = 276.0
+texture = SubResource("AtlasTexture_nxw78")
+expand_mode = 4
+stretch_mode = 4
+flip_h = true
+
+[node name="Salad4" type="TextureRect" parent="Control/Assets"]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 146.0
+offset_right = 439.0
+offset_bottom = 274.0
+texture = SubResource("AtlasTexture_hajpk")
+
+[node name="Lunchbowl" type="Control" parent="Control/Assets"]
+anchors_preset = 0
+offset_left = 149.0
+offset_top = 116.0
+offset_right = 189.0
+offset_bottom = 156.0
+scale = Vector2(2, 2)
+
+[node name="BowlBack" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_qyw5c")
+
+[node name="Beans" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_pt1rx")
+
+[node name="Rice" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_058s5")
+
+[node name="Pasta" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_1ykmg")
+
+[node name="Chicken" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_q1ytj")
+
+[node name="Salad" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_assgo")
+
+[node name="Egg" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_uje8w")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control/Assets/Lunchbowl"]
+position = Vector2(32, 28.5)
+scale = Vector2(0.5, 0.5)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_h68rk")
+texture = ExtResource("2_t4j44")
+lifetime = 2.0
+visibility_rect = Rect2(0, 0, 10, 10)
+
+[node name="Beans2" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_pt1rx")
+
+[node name="Rice2" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_058s5")
+
+[node name="Pasta2" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_1ykmg")
+
+[node name="Chicken2" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_q1ytj")
+
+[node name="Salad2" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_assgo")
+
+[node name="Egg2" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_uje8w")
+
+[node name="BowlFront" type="TextureRect" parent="Control/Assets/Lunchbowl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_cbp33")
+
+[node name="Control" type="Control" parent="Control/Assets/Lunchbowl"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.5
+offset_top = 13.0
+offset_right = 94.5
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_yul8n")
+theme_override_font_sizes/font_size = 48
+text = "MARMITEX"
+
+[node name="Logo" type="TextureRect" parent="Control"]
+modulate = Color(1, 0.439216, 0.2, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_top = 3.0
+offset_right = 812.0
+offset_bottom = 267.0
+grow_horizontal = 2
+scale = Vector2(0.239999, 0.239999)
+texture = ExtResource("11_n4bwj")
+
+[node name="Buttons" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 76.0
+offset_right = 248.0
+offset_bottom = 159.0
+
+[node name="PlayButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("16_3kd1k")
+text = "JOGAR"
+
+[node name="OptionsButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("16_3kd1k")
+text = "opcoes"
+
+[node name="ExitButton" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("16_3kd1k")
+text = "SAIR"
+
+[node name="ReturnButton" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 852.0
+offset_top = 17.0
+offset_right = 919.0
+offset_bottom = 34.0
+focus_mode = 0
+theme = ExtResource("16_3kd1k")
+text = "voltar"
+metadata/_edit_use_anchors_ = true
+
+[node name="SoundContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 56.0
+offset_right = 639.0
+offset_bottom = 96.0
+
+[node name="MusicSlider" type="HSlider" parent="Control/SoundContainer"]
+layout_mode = 2
+theme = ExtResource("16_3kd1k")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/SoundContainer/MusicSlider"]
+layout_mode = 0
+offset_left = -14.0
+offset_bottom = 13.0
+texture = SubResource("AtlasTexture_plj2d")
+
+[node name="SFXSlider" type="HSlider" parent="Control/SoundContainer"]
+layout_mode = 2
+theme = ExtResource("16_3kd1k")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/SoundContainer/SFXSlider"]
+layout_mode = 0
+offset_left = -14.0
+offset_bottom = 13.0
+texture = SubResource("AtlasTexture_jj5wo")
+
+[node name="ScreenContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 505.0
+offset_top = 85.0
+offset_right = 730.0
+offset_bottom = 116.0
+
+[node name="Fullscreen" type="CheckButton" parent="Control/ScreenContainer"]
+layout_mode = 2
+theme = ExtResource("16_3kd1k")
+text = "Fullscreen"
+
+[node name="Vsync" type="CheckButton" parent="Control/ScreenContainer"]
+layout_mode = 2
+theme = ExtResource("16_3kd1k")
+button_pressed = true
+text = "VSync"
+
+[node name="ResolutionContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 114.0
+offset_right = 597.0
+offset_bottom = 131.0
+theme = ExtResource("16_3kd1k")
+
+[node name="Label" type="Label" parent="Control/ResolutionContainer"]
+layout_mode = 2
+theme = ExtResource("16_3kd1k")
+text = "Resolution"
+
+[node name="ResolutionOptions" type="OptionButton" parent="Control/ResolutionContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("16_3kd1k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_j3yuw")
+autoplay = true
+bus = &"Music"
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="mouse_entered" from="Control/Buttons/PlayButton" to="." method="_on_button_hover"]
+[connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="Control/Buttons/OptionsButton" to="." method="_on_button_hover"]
+[connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="Control/Buttons/ExitButton" to="." method="_on_button_hover"]
+[connection signal="pressed" from="Control/Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="Control/ReturnButton" to="." method="_on_button_hover"]
+[connection signal="pressed" from="Control/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="value_changed" from="Control/SoundContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control/SoundContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="toggled" from="Control/ScreenContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Control/ScreenContainer/Vsync" to="." method="_on_vsync_toggled"]
+[connection signal="item_selected" from="Control/ResolutionContainer/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]

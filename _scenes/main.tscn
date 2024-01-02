@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://cvteu0n3wel28"]
+[gd_scene load_steps=110 format=3 uid="uid://cvteu0n3wel28"]
 
 [ext_resource type="Script" path="res://entities/pots/beans_pot/beans_pot.gd" id="1_w36h2"]
 [ext_resource type="AudioStream" uid="uid://chi8pp80eb57" path="res://common/audio/sfx_pan_cook.wav" id="2_ba6vt"]
@@ -30,7 +30,6 @@
 [ext_resource type="AudioStream" uid="uid://ddd3pcfuo85kt" path="res://common/audio/sfx_open_bin.wav" id="28_l8equ"]
 [ext_resource type="AudioStream" uid="uid://0myfy4yr6dlq" path="res://common/audio/sfx_throw_bin.wav" id="29_7pfht"]
 [ext_resource type="Texture2D" uid="uid://gkle5moxok6m" path="res://entities/trashcan/trashcan.png" id="29_gqkq1"]
-[ext_resource type="FontFile" uid="uid://um0h3q1v0t1n" path="res://common/fonts/Keychain.otf" id="31_r6wtu"]
 [ext_resource type="Script" path="res://entities/order_queue/order_queue.gd" id="32_um3mi"]
 [ext_resource type="AudioStream" uid="uid://bs3biqg6ql87" path="res://common/audio/sfx_cellphone_notification.wav" id="33_38vx4"]
 [ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://entities/order_queue/phone.png" id="34_xg7tk"]
@@ -1142,34 +1141,6 @@ volume_db = -10.0
 pitch_scale = 3.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="MinutesTimer" type="Label" parent="HUD"]
-visible = false
-offset_left = 14.0
-offset_top = 15.0
-offset_right = 75.0
-offset_bottom = 62.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("31_r6wtu")
-theme_override_font_sizes/font_size = 48
-text = "00:"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="SecondsTimer" type="Label" parent="HUD"]
-visible = false
-offset_left = 63.0
-offset_top = 15.0
-offset_right = 124.0
-offset_bottom = 62.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("31_r6wtu")
-theme_override_font_sizes/font_size = 48
-text = "00"
-horizontal_alignment = 2
-vertical_alignment = 1
 
 [node name="OrderControl" type="Control" parent="HUD"]
 layout_mode = 3
