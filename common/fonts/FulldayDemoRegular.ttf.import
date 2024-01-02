@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dfae4tjwcrksg"
-path="res://.godot/imported/DisposableDroidBB.ttf-49b5eb8c93b8da59ed7cee3928f3a8b5.fontdata"
+uid="uid://b4nu6tcvi1bqt"
+path="res://.godot/imported/FulldayDemoRegular.ttf-d4e3ecf1c6cffb6a8970a05d21472a0c.fontdata"
 
 [deps]
 
-source_file="res://common/fonts/DisposableDroidBB.ttf"
-dest_files=["res://.godot/imported/DisposableDroidBB.ttf-49b5eb8c93b8da59ed7cee3928f3a8b5.fontdata"]
+source_file="res://common/fonts/FulldayDemoRegular.ttf"
+dest_files=["res://.godot/imported/FulldayDemoRegular.ttf-d4e3ecf1c6cffb6a8970a05d21472a0c.fontdata"]
 
 [params]
 
@@ -20,8 +20,8 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=2
-subpixel_positioning=0
+hinting=1
+subpixel_positioning=1
 oversampling=4.0
 Fallbacks=null
 fallbacks=[]
