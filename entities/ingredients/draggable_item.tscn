@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://q1hwfucfamn3"]
+
+[ext_resource type="Script" path="res://entities/ingredients/draggable_item.gd" id="1_y53x3"]
+[ext_resource type="SpriteFrames" uid="uid://phn56jxidvsi" path="res://entities/ingredients/ingredient_frames.tres" id="2_ni5j0"]
+
+[node name="DraggableItem" type="Node2D"]
+z_index = 10
+script = ExtResource("1_y53x3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_ni5j0")
+animation = &"rice"
+frame_progress = 0.932185

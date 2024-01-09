@@ -1,0 +1,160 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdmwfvs4vas0u"]
+
+[ext_resource type="PackedScene" uid="uid://dj2cu2e4ba88q" path="res://entities/ingredients/item_grabber.tscn" id="1_b1gdp"]
+[ext_resource type="PackedScene" uid="uid://blm4e2tegias6" path="res://entities/ingredients/ingredient_instantiator.tscn" id="2_aystw"]
+[ext_resource type="Script" path="res://_scenes/pot.gd" id="3_ebejg"]
+[ext_resource type="AudioStream" uid="uid://dw8el2y4mp7hv" path="res://common/audio/music_main_loop.wav" id="3_ejv44"]
+[ext_resource type="SpriteFrames" uid="uid://cp1ed5mcl12t6" path="res://entities/pots/pot_frames.tres" id="4_6x5tx"]
+[ext_resource type="Texture2D" uid="uid://cbky6am0in2be" path="res://common/background.png" id="4_fskms"]
+[ext_resource type="Script" path="res://entities/order_queue/order_queue.gd" id="5_ungdu"]
+[ext_resource type="AudioStream" uid="uid://bs3biqg6ql87" path="res://common/audio/sfx_cellphone_notification.wav" id="6_cn15q"]
+[ext_resource type="Texture2D" uid="uid://bx8pr6ij355a1" path="res://entities/order_queue/phone.png" id="7_lx6bj"]
+[ext_resource type="Texture2D" uid="uid://dhfyvkr5qeor0" path="res://entities/order_queue/notification.png" id="8_1107n"]
+[ext_resource type="FontFile" uid="uid://dfae4tjwcrksg" path="res://common/fonts/DisposableDroidBB.ttf" id="9_jmsud"]
+
+[node name="Game" type="Node"]
+
+[node name="ItemGrabber" parent="." instance=ExtResource("1_b1gdp")]
+
+[node name="Ingredients" type="Node" parent="."]
+
+[node name="Rice" parent="Ingredients" instance=ExtResource("2_aystw")]
+position = Vector2(151, 28)
+
+[node name="Beans" parent="Ingredients" instance=ExtResource("2_aystw")]
+position = Vector2(178, 28)
+ingredient_name = "beans"
+
+[node name="Pasta" parent="Ingredients" instance=ExtResource("2_aystw")]
+position = Vector2(145, 67)
+ingredient_name = "pasta"
+
+[node name="Eggs" parent="Ingredients" instance=ExtResource("2_aystw")]
+position = Vector2(184, 67)
+ingredient_name = "egg"
+
+[node name="Chicken" parent="Ingredients" instance=ExtResource("2_aystw")]
+position = Vector2(49, 65)
+ingredient_name = "chicken"
+
+[node name="Salad" parent="Ingredients" instance=ExtResource("2_aystw")]
+position = Vector2(49, 29)
+ingredient_name = "salad"
+
+[node name="Pots" type="Node" parent="."]
+
+[node name="Pot" type="Node2D" parent="Pots"]
+script = ExtResource("3_ebejg")
+pot_color = "red"
+
+[node name="Sprites" type="Node" parent="Pots/Pot"]
+
+[node name="Back" type="AnimatedSprite2D" parent="Pots/Pot/Sprites"]
+sprite_frames = ExtResource("4_6x5tx")
+animation = &"pot_back_red"
+frame_progress = 0.335029
+
+[node name="Ingredient" type="AnimatedSprite2D" parent="Pots/Pot/Sprites"]
+sprite_frames = ExtResource("4_6x5tx")
+animation = &"empty"
+frame_progress = 0.600719
+
+[node name="Front" type="AnimatedSprite2D" parent="Pots/Pot/Sprites"]
+sprite_frames = ExtResource("4_6x5tx")
+animation = &"pot_front_red"
+frame_progress = 0.322487
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ejv44")
+bus = &"Music"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+offset_right = 426.0
+offset_bottom = 240.0
+texture = ExtResource("4_fskms")
+metadata/_edit_lock_ = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="OrderControl" type="Control" parent="HUD"]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("5_ungdu")
+new_order_audio = ExtResource("6_cn15q")
+
+[node name="Orders" type="VBoxContainer" parent="HUD/OrderControl"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_top = -17.0
+offset_right = -3.0
+offset_bottom = 182.06
+grow_horizontal = 0
+alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD/OrderControl/Orders"]
+
+[node name="Timer" type="Timer" parent="HUD/OrderControl"]
+wait_time = 3.0
+
+[node name="PhoneControl" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 188.0
+offset_right = 425.735
+offset_bottom = 316.24
+
+[node name="Phone" type="TextureRect" parent="HUD/PhoneControl"]
+layout_mode = 0
+offset_right = 106.0
+offset_bottom = 128.0
+texture = ExtResource("7_lx6bj")
+
+[node name="HealthContainer" type="HBoxContainer" parent="HUD/PhoneControl/Phone"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 14.0
+offset_top = 39.0
+offset_right = 90.0
+offset_bottom = 50.0
+
+[node name="Notification" type="TextureRect" parent="HUD/PhoneControl/Phone"]
+visible = false
+layout_mode = 0
+offset_left = 59.0
+offset_top = 23.0
+offset_right = 93.0
+offset_bottom = 50.0
+texture = ExtResource("8_1107n")
+
+[node name="ScoreLabel" type="Label" parent="HUD/PhoneControl"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.735
+offset_top = 22.0
+offset_right = -10.735
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.167969, 0.304688, 0.582031, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("9_jmsud")
+theme_override_font_sizes/font_size = 14
+text = "R$ 0,00"
+
+[connection signal="timeout" from="HUD/OrderControl/Timer" to="HUD/OrderControl" method="_on_timer_timeout"]

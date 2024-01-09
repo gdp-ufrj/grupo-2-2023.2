@@ -61,7 +61,7 @@ enum Mood{
 @onready var _animator : AnimatedSprite2D = $OrderBalloon
 @onready var _timer : TimerWithRect = $Timer
 @onready var _audio : AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
-@onready var _score_controller : ScoreController = get_tree().get_root().get_node("Kitchen").get_node("%ScoreController")
+@onready var _score_controller : ScoreController = get_tree().get_root().get_node("%ScoreController")
 
 var _is_lunch_inside = false
 var _is_tutorial = false

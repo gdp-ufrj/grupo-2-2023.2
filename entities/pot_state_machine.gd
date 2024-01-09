@@ -1,4 +1,4 @@
-class_name BeansPot
+class_name Pot
 extends Node2D
 
 signal ingredient_released_outside_pan(ingredient)
@@ -16,7 +16,7 @@ signal released_cooked_ingredient(ingredient, decrease_ingredient)
 
 @onready var area2d: Area2D = $Area2D
 @onready var _audio := $AudioStreamPlayer2D
-@onready var _pan : BeansPot = self
+@onready var _pan : Pot = self
 @onready var _animator: AnimatedSprite2D = _pan.get_node("AnimatedSprite2D")
 @onready var _fire_controller: FireController = _pan.get_node("FireController")
 @onready var _timer : Timer = _pan.get_node("Timer")

@@ -1228,11 +1228,6 @@ autoplay = true
 unique_name_in_owner = true
 script = ExtResource("37_ssh1i")
 
-[connection signal="grabbed_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_grabbed_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Stove/BeansPot/DraggableCookedIngredient" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="LunchBowl" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="LunchBowl2" method="_on_released_cooked_ingredient"]
-[connection signal="released_cooked_ingredient" from="Stove/BeansPot" to="Trashcan" method="_on_released_cooked_ingredient"]
 [connection signal="mouse_entered" from="Stove/BeansPot/Area2D" to="Stove/BeansPot" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Stove/BeansPot/Area2D" to="Stove/BeansPot" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="Stove/BeansPot/FireController/KnobSprite/Area2D" to="Stove/BeansPot/FireController" method="_on_area_2d_input_event"]

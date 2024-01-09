@@ -7,7 +7,7 @@ extends Control
 
 @onready var _orders = $Orders
 @onready var _timer = $Timer
-@onready var _audio : AudioStreamPlayer2D = get_node("Orders/AudioStreamPlayer2D")
+@onready var _audio : AudioStreamPlayer = $Orders/AudioStreamPlayer
 
 const MAX_INT = 9223372036854775807
 
